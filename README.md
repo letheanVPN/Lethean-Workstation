@@ -1,5 +1,7 @@
 # Lethean Workstation
 
+**WORK IN PROGRESS**
+
 Lethean Workstation is a remake of a long decommissioned system that provided warehousing and distribution as a service in 2010 to a handful of Devon businesses and one in new york; while far from perfect, it was years ahead of Shopify and in heavy development from a warehouse next to Willies Cacao, the chocolate artisan in Devon, England.
 
 The software Workstation was created by members of the new team in 2008 for Original Webware LTD our employer, after reading the book [Dreaming in Code](https://en.wikipedia.org/wiki/Dreaming_in_Code), to save the dynamically changing requirements of [Original Organics](http://www.originalorganics.co.uk) as the founder fought to save his company from the financial stock crash of 2008.
