@@ -27,9 +27,12 @@ Workstation was written in PHP5, Featured:
  4) [HtmlUnit](https://htmlunit.sourceforge.io/).
 
 
-The workstation platform crafted by Lethean's new Lead Developer; remains alive inside their mind.
+Workstation platform crafted by Lethean's new Lead Developer; remains alive inside their mind.
 
 With the advent of the WebView2 API, Confidential blockchain technology, and networking freedoms we purpose to create, this repositories plan is to bring Workstation back from Web1, where it struggled to Web3, where its never been so essential to secure business operations in the new digital age, yet to coalesce into reality.
+
+
+Watch this Space for Server-less and DSS compliant Web3 commerce software, for bussiness, remote workers? Regulated space? no problemo, Every CryptoNote transaction in every block, has its own seprate ViewKey enabling SOX & HIPPA Complience by network and deployment configuration by simply saving the keykey in your keyserver DE.
 
 [![Windows](https://github.com/letheanVPN/lethean/actions/workflows/windows.yml/badge.svg)](https://github.com/letheanVPN/lethean/actions/workflows/windows.yml)
 [![MacOS](https://github.com/letheanVPN/lethean/actions/workflows/macos.yml/badge.svg)](https://github.com/letheanVPN/lethean/actions/workflows/macos.yml)
