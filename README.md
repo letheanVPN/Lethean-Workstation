@@ -38,5 +38,18 @@ Every CryptoNote transaction in every block has its separate ViewKey enabling SO
 
 Why should Home users, People and Bussiness operate on such alienating terms or have different grades of software functionality?
 
+## Technology Stack
+
+### Window Server
+
+#### Wails.io [Project Information](https://wails.io), [GitHub](https://github.com/wailsapp)
+
+Mid 2021, our lead developer found a project that let people make client native apps; in [Go](https://go.dev/) & HTML/JS/CSS; Wails in v1, was not flexible enough for our needs. But with version two well underway, the project lead sponsored from own funds until the day Lethean could use V2, after the painful experiences with Electron that led to the birth of a [clientside server platform](https://github.com/letheanVPN/server) 
+
+Directly integrated with the operating system [WebView2 API](https://docs.microsoft.com/en-us/microsoft-edge/webview2/) enables PWA's to get drop-in native build's; these can be tied into your CI pipeline and added to your PWA's Manifest file by setting [related_applications](https://developer.mozilla.org/en-US/docs/Web/Manifest/related_applications) and [prefer_related_applications](https://developer.mozilla.org/en-US/docs/Web/Manifest/prefer_related_applications)
+
+
+
+
 [![Windows](https://github.com/letheanVPN/lethean/actions/workflows/windows.yml/badge.svg)](https://github.com/letheanVPN/lethean/actions/workflows/windows.yml)
 [![MacOS](https://github.com/letheanVPN/lethean/actions/workflows/macos.yml/badge.svg)](https://github.com/letheanVPN/lethean/actions/workflows/macos.yml)
