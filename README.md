@@ -32,7 +32,11 @@ Workstation platform crafted by Lethean's new Lead Developer; remains alive insi
 With the advent of the WebView2 API, Confidential blockchain technology, and networking freedoms we purpose to create, this repositories plan is to bring Workstation back from Web1, where it struggled to Web3, where its never been so essential to secure business operations in the new digital age, yet to coalesce into reality.
 
 
-Watch this Space for Server-less and DSS compliant Web3 commerce software, for bussiness, remote workers? Regulated space? no problemo, Every CryptoNote transaction in every block, has its own seprate ViewKey enabling SOX & HIPPA Complience by network and deployment configuration by simply saving the keykey in your keyserver DE.
+Watch this Space for Server-less and DSS compliant Web3 commerce software, business? Remote workers? Regulated space? No problemo. 
+
+Every CryptoNote transaction in every block has its separate ViewKey enabling SOX & HIPPA Compliance by network and deployment configuration by simply saving the keykey in your keyserver DE.
+
+Why should Home users, People and Bussiness operate on such alienating terms or have different grades of software functionality?
 
 [![Windows](https://github.com/letheanVPN/lethean/actions/workflows/windows.yml/badge.svg)](https://github.com/letheanVPN/lethean/actions/workflows/windows.yml)
 [![MacOS](https://github.com/letheanVPN/lethean/actions/workflows/macos.yml/badge.svg)](https://github.com/letheanVPN/lethean/actions/workflows/macos.yml)
