@@ -31,7 +31,7 @@ The platform crafted by Lethean's new Lead Developer; remains alive inside their
 
 With the advent of the WebView2 API, Confidential blockchain technology, and networking freedoms we purpose to create, this repositories plan is to bring Workstation back from Web1, where it struggled, to Web3, a place it was designed for, never has data security been so essential to secure business operations in the new digital age, yet to coalesce into reality.
 
-For two long commercial and residential played separately, security needs to be a fundamental right, period. 
+For to long commercial and residential played separately, security needs to be a fundamental right, period. 
 
 Watch this Space for Server-less and DSS compliant Web3 commerce software, business? Remote workers? Regulated space? No problemo. 
 
