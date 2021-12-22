@@ -23,7 +23,7 @@ Workstation was written in PHP5, Featured:
 
  1) old spec did not include the payment page as part of the CDE, don't judge with modern standards; Web1 did not give over to Web2 easily.
  2) One of us authored the PHP OS libs for [Rackspace Cloud DNS](https://github.com/Snider/php-cloudMonitoring), [Rackspace Cloud Monitor](https://github.com/Snider/php-cloudMonitoring) 
- 3) One of us authored the PHP5 NMA library for PHP5; linked from NMA as the php5 lib, its use of streams removing external dependency on Curl was not a standard practice.
+ 3) One of us authored the [NMA library for PHP5](https://github.com/Snider/php-notifyMyAndroid); linked from NMA as the php5 lib, its use of streams removing external dependency on Curl was not a standard practice.
  4) [HtmlUnit](https://htmlunit.sourceforge.io/).
 
 
