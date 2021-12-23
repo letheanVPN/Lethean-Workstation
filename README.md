@@ -25,7 +25,7 @@ Workstation was written in PHP5, Featured:
  2) One of us authored the PHP OS libs for [Rackspace Cloud DNS](https://github.com/Snider/php-cloudMonitoring), [Rackspace Cloud Monitor](https://github.com/Snider/php-cloudMonitoring) 
  3) One of us authored the [NMA library for PHP5](https://github.com/Snider/php-notifyMyAndroid); linked from NMA as the php5 lib, its use of streams removing external dependency on Curl was not a standard practice.
  4) [HtmlUnit](https://htmlunit.sourceforge.io/).
- 5) Yes, PHP, `hook_*_pre`, `hook_*_post`, `mysql`, still get caled crazy for that idea, but my avg rep time was around 50ms unde load.
+ 5) Yes, PHP, `hook_*_pre`, `hook_*_post`, `mysql`, still get caled crazy for that idea, but my avg rep time was around 50ms under load.
 
 
 The platform crafted by Lethean's new Lead Developer; remains alive inside their mind.
