@@ -2,7 +2,7 @@
 
 **WORK IN PROGRESS**
 
-Lethean Workstation is a remake of a long decommissioned system that provided warehousing and distribution as a service in 2010 to a handful of Devon businesses and one in new york; while far from perfect, it was years ahead of Shopify and in heavy development from a warehouse next to Willies Cacao, the chocolate artisan in Devon, England.
+Lethean Workstation is a remake of a [long decommissioned](http://whois.sc/workstationcommerce.co.uk) system that provided warehousing and distribution as a service in 2010 to a handful of Devon businesses and one in new york; while far from perfect, it was years ahead of Shopify and in heavy development from a warehouse next to Willies Cacao, the chocolate artisan in Devon, England.
 
 The software Workstation was created by members of Letheans new team in 2008; for the original owner of Original Organics Limited, after reading the book [Dreaming in Code](https://en.wikipedia.org/wiki/Dreaming_in_Code), to save the dynamically changing requirements of [Original Organics](http://www.originalorganics.co.uk) as the founder fought to save his company from the financial stock crash of 2008.
 
@@ -11,7 +11,7 @@ It was a parallel processing multi-channel commerce & logistics SaaS application
  Born from requirements to survive, not needs, the multi-tenanted application featured, dynamic web interface, before Twig using [PHP_Flexy](https://pear.php.net/manual/en/package.html.html-template-flexy.php), before SNI and implemented Googles COMIT standard to perform cloud print with a bottom-up configuration matrix, dynamically immutable key depths that honoured top-down permission rulesets.
 
 Workstation was written in PHP5, Featured:
-- Observable event loop 
+- Observable event loop(5) 
 - GearMan IPC
 - Long Polling Web Workers using COMIT (The original spec)
 - Child Companies
@@ -25,6 +25,7 @@ Workstation was written in PHP5, Featured:
  2) One of us authored the PHP OS libs for [Rackspace Cloud DNS](https://github.com/Snider/php-cloudMonitoring), [Rackspace Cloud Monitor](https://github.com/Snider/php-cloudMonitoring) 
  3) One of us authored the [NMA library for PHP5](https://github.com/Snider/php-notifyMyAndroid); linked from NMA as the php5 lib, its use of streams removing external dependency on Curl was not a standard practice.
  4) [HtmlUnit](https://htmlunit.sourceforge.io/).
+ 5) Yes, PHP, `hook_*_pre`, `hook_*_post`, `mysql`, still get caled crazy for that idea, but my avg rep time was around 50ms unde load.
 
 
 The platform crafted by Lethean's new Lead Developer; remains alive inside their mind.
