@@ -39,7 +39,7 @@
     "build:linux": "cd lthn && npm run server:build:linux && cd .. && npm run build -- --platform linux",
     "ci:windows": "cd lthn && npm run ci:windows && cd ..  && npm run build -- --platform windows/amd64",
     "sign:macos": "node-codesign build/bin/lethean.app 'Developer ID Application: Lethean LTD (W2DNA5L5DY)'",
-    "dev:git-update": "git submodule sync && git update",
+    "dev:git-update": "git submodule sync && git submodule update",
     "dev:setup": "npm run wails:install && cd frontend && npm run build && cd .."
   },
   "devDependencies": {
