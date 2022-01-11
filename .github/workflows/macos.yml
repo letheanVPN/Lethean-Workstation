@@ -31,7 +31,7 @@ jobs:
         with:
           release: development
           token: ${{ secrets.GITHUB_TOKEN }}
-          files: build/bin/lethean-darwin-amd64
+          files: build/bin/lethean.app
 
 
   macos-arm64:
@@ -58,5 +58,5 @@ jobs:
         with:
           release: development
           token: ${{ secrets.GITHUB_TOKEN }}
-          files: build/bin/lethean-darwin-arm64
+          files: build/bin/lethean-m1.app
 

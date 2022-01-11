@@ -2,15 +2,14 @@
   "license": "EUPL-1.2",
   "version": "4.0.3",
   "description": "Lethean GUI APP",
-  "homepage": "https://github.com/letheanVPN/app/wiki",
+  "homepage": "https://github.com/letheanVPN/Lethean-Workstation/wiki",
   "bugs": {
-    "url": "https://github.com/letheanVPN/app/issues",
+    "url": "https://github.com/letheanVPN/Lethean-Workstation/issues",
     "email": "hello@lt.hn"
   },
-  "author": "Snider <snider@lt.hn> (https://lt.hn)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/letheanVPN/app.git"
+    "url": "https://github.com/letheanVPN/Lethean-Workstation.git"
   },
   "os": [
     "darwin",
@@ -30,15 +29,14 @@
     "wails:install": "go install github.com/wailsapp/wails/v2/cmd/wails@latest",
     "fe:install": "cd frontend && npm install --legacy-peer-deps",
     "be:install": "cd lthn && npm install",
-    "build": "cd frontend && npm run build && cd .. && wails build --clean --noPackage",
+    "build": "cd frontend && npm run build && cd .. && wails build --clean",
     "clean": "rimraf build/bin/lethean* build/cli/lth* lthn/node_modules frontend/node_modules frontend/dist lthn/build/lth* **-lock.json",
     "build:macos": "cd lthn && npm run server:build:macos-intel && cd ..  && npm run build -- --platform darwin/universal",
-    "build:macos-arm": "cd lthn && npm run server:build:macos-arm && cd ..  && npm run build -- --platform darwin/arm64",
+    "build:macos-arm": "cd lthn && npm run server:build:macos-arm && cd ..  && npm run build -- --platform darwin/arm64 -o lethean-m1.app",
     "build:macos-intel": "cd lthn && npm run server:build:macos-intel && cd ..  && npm run build -- --platform darwin/amd64",
     "build:windows": "cd lthn && npm run server:build:windows && cd ..  && npm run build -- --platform windows",
     "build:linux": "cd lthn && npm run server:build:linux && cd .. && npm run build -- --platform linux",
     "ci:windows": "cd lthn && npm run ci:windows && cd ..  && npm run build -- --platform windows/amd64",
-    "sign:macos": "node-codesign build/bin/lethean.app 'Developer ID Application: Lethean LTD (W2DNA5L5DY)'",
     "dev:git-update": "git submodule sync && git submodule update",
     "dev:setup": "npm run wails:install && cd frontend && npm run build && cd .."
   },
