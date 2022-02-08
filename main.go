@@ -10,7 +10,7 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/options/windows"
 )
 
-//go:embed frontend/dist/lethean-app/browser
+//go:embed frontend/dist
 var assets embed.FS
 
 func main() {
