@@ -1,9 +1,9 @@
 {
   "name": "lethean",
   "assetdir": "./frontend/dist",
-  "frontend:build": "ng build",
+  "frontend:build": "npm run build",
   "frontend:install": "npm install --legacy-peer-deps",
-  "frontend:dev": "ng serve",
+  "frontend:dev": "npm run serve",
   "wailsjsdir": "./",
   "version": "2",
   "Path": "",
