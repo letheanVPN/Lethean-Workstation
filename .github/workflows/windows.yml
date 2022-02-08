@@ -24,11 +24,4 @@ jobs:
       - name: Install Deno
         run: iwr https://deno.land/x/install/install.ps1 -useb | iex
       - name: Build
-        run: npm run ci:windows
-      - name: Update release
-        uses: johnwbyrd/update-release@v1.0.0
-        with:
-          release: development
-          token: ${{ secrets.GITHUB_TOKEN }}
-          files: build/bin/lethean.exe
-
+        run: wails build
