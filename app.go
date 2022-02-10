@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"embed"
 	"errors"
 	"fmt"
 	"github.com/leaanthony/debme"
@@ -14,8 +13,6 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
-//go:embed build/cli/*
-var lthn embed.FS
 
 var spawnCmd *exec.Cmd
 
@@ -37,13 +34,11 @@ func (b *App) startup(ctx context.Context) {
 	exeName := ""
 	//
 	if goruntime.GOOS == "windows" {
-		exeName = "lthn.exe"
+		exeName = "lethean-server.exe"
 	} else {
-		exeName = "lthn"
+		exeName = "lethean-server"
 	}
 	// make folder $HOME/Lethean
-    homeDirTest := filepath.Join(homeDir, "Lethean")
-    os.MkdirAll(homeDirTest, os.ModePerm)
 
 	exePath := filepath.Join(homeDir, "Lethean", exeName)
 
@@ -51,18 +46,9 @@ func (b *App) startup(ctx context.Context) {
 	    fmt.Println("LTHN Found, Starting backend service")
         spawnCmd = exec.Command(exePath, "backend", "start")
 	} else if errors.Is(err, os.ErrNotExist) {
-	    fmt.Println("Installing backend service")
-		root, _ := debme.FS(lthn, "build/cli")
-		err := root.CopyFile(exeName, exePath, 0777)
-		if err != nil {
-			return
-		}
-		fmt.Println("LTHN Installed, Starting backend service")
-		spawnCmd = exec.Command(exePath, "backend", "start")
+	    fmt.Println("Please make sure lethean-server in installed")
 		//_ = os.WriteFile(exePath, data, 0777)
 	}
-
-
 	_, err := spawnCmd.Output()
 	if err != nil {
 	    fmt.Println(err)
