@@ -4,13 +4,11 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github.com/leaanthony/debme"
 	"os"
 	"os/exec"
 	"path/filepath"
 	goruntime "runtime"
 
-	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
 
@@ -72,16 +70,3 @@ func (b *App) shutdown(ctx context.Context) {
 }
 
 
-
-// Shows a Dialog
-func (b *App) ShowDialog() {
-	_, err := runtime.MessageDialog(b.ctx, runtime.MessageDialogOptions{
-		Type:    runtime.InfoDialog,
-		Title:   "Native Dialog from Go",
-		Message: "This is a Native Dialog send from Go.",
-	})
-
-	if err != nil {
-		panic(err)
-	}
-}
