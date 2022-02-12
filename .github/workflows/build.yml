@@ -76,7 +76,7 @@ jobs:
       - name: Build
         run: wails build --platform darwin/amd64
   windows:
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
       - uses: actions/checkout@v2
         with:
