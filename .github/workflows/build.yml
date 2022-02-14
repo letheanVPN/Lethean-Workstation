@@ -107,5 +107,5 @@ jobs:
         run: wails build --platform windows
       - uses: actions/upload-artifact@v2
         with:
-          name: macos-universal
+          name: windows
           path: build/bin/lethean.exe
