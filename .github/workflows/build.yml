@@ -40,7 +40,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: macos-universal
-          path: build/lethean.app
+          path: build/bin/lethean.app
   macos-arm:
     runs-on: macos-latest
     steps:
@@ -63,7 +63,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: macos-arm
-          path: build/lethean.app
+          path: build/bin/lethean.app
   macos-intel:
     runs-on: macos-11
     steps:
@@ -86,7 +86,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: macos-intel
-          path: build/lethean.app
+          path: build/bin/lethean.app
   windows:
     runs-on: windows-2022
     steps:
@@ -108,4 +108,4 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: macos-universal
-          path: build/lethean.exe
+          path: build/bin/lethean.exe
