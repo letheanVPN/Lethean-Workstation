@@ -37,6 +37,7 @@ jobs:
         run: curl -fsSL https://deno.land/x/install/install.sh | sh && echo "$HOME/.deno/bin" >> $GITHUB_PATH
       - name: Build
         run: wails build --platform darwin/universal
+      - run: chmod +x build/bin/lethean.app/Contents/MacOS/lethean
       - uses: actions/upload-artifact@v2
         with:
           name: lethean.app
