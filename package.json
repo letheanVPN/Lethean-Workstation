@@ -1,7 +1,7 @@
 {
   "name": "lethean",
   "license": "EUPL-1.2",
-  "version": "4.0.3",
+  "version": "0.0.1",
   "description": "Lethean GUI APP",
   "homepage": "https://github.com/letheanVPN/workstation/wiki",
   "bugs": {
@@ -20,7 +20,7 @@
   "scripts": {
     "start": "wails dev",
     "build": "cd frontend && npm run build && cd .. && wails build --clean",
-    "clean": "rimraf server/node_modules frontend/node_modules **-lock.json",
+    "clean": "rimraf **/node_modules **/*-lock.json **/*.json.md5",
     "postinstall": "go install github.com/wailsapp/wails/v2/cmd/wails@latest",
     "dev:git-update": "git submodule sync && git submodule update",
     "be:serve": "cd server && $HOME/.deno/bin/deno run --allow-net --allow-env --allow-run --allow-read --allow-write --unstable src/server.ts backend start"
