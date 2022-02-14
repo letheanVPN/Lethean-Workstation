@@ -37,6 +37,10 @@ jobs:
         run: curl -fsSL https://deno.land/x/install/install.sh | sh && echo "$HOME/.deno/bin" >> $GITHUB_PATH
       - name: Build
         run: wails build --platform darwin/universal
+      - uses: actions/upload-artifact@v2
+        with:
+          name: macos-universal
+          path: build/lethean.app
   macos-arm:
     runs-on: macos-latest
     steps:
@@ -56,6 +60,10 @@ jobs:
         run: curl -fsSL https://deno.land/x/install/install.sh | sh && echo "$HOME/.deno/bin" >> $GITHUB_PATH
       - name: Build
         run: wails build --platform darwin/arm64
+      - uses: actions/upload-artifact@v2
+        with:
+          name: macos-arm
+          path: build/lethean.app
   macos-intel:
     runs-on: macos-11
     steps:
@@ -75,6 +83,10 @@ jobs:
         run: curl -fsSL https://deno.land/x/install/install.sh | sh && echo "$HOME/.deno/bin" >> $GITHUB_PATH
       - name: Build
         run: wails build --platform darwin/amd64
+      - uses: actions/upload-artifact@v2
+        with:
+          name: macos-intel
+          path: build/lethean.app
   windows:
     runs-on: windows-2022
     steps:
@@ -93,3 +105,7 @@ jobs:
         run: iwr https://deno.land/x/install/install.ps1 -useb | iex
       - name: Build
         run: wails build --platform windows
+      - uses: actions/upload-artifact@v2
+        with:
+          name: macos-universal
+          path: build/lethean.exe
