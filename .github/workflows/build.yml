@@ -40,7 +40,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: lethean.app
-          path: build/bin/lethean.app
+          path: build/bin/
   windows:
     runs-on: windows-2022
     steps:
@@ -62,4 +62,4 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: lethean.exe
-          path: build/bin/lethean.exe
+          path: build/bin/
