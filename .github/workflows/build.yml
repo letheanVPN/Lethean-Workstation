@@ -43,7 +43,7 @@ jobs:
           name: lethean.app
           path: build/bin/
   linux:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
@@ -56,6 +56,7 @@ jobs:
         with:
           go-version: 1.17
       - run: npm install --legacy-peer-deps
+      - run: sudo apt-get install libgtk-3-0 libwebkit2gtk-4.0-dev
       - run: cd frontend && npm install --legacy-peer-deps
       - name: Install Deno
         run: curl -fsSL https://deno.land/x/install/install.sh | sh && echo "$HOME/.deno/bin" >> $GITHUB_PATH
