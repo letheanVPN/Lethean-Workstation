@@ -31,6 +31,18 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: 1.17
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
       - run: npm install --legacy-peer-deps
       - run: cd frontend && npm install --legacy-peer-deps
       - name: Install Deno
@@ -55,6 +67,18 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: 1.17
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
       - run: npm install --legacy-peer-deps
       - run: sudo apt-get install libgtk-3-0 libwebkit2gtk-4.0-dev
       - run: cd frontend && npm install --legacy-peer-deps
@@ -79,6 +103,18 @@ jobs:
       - uses: actions/setup-go@v2
         with:
           go-version: 1.17
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
       - run: npm install --legacy-peer-deps
       - run: cd frontend && npm install --legacy-peer-deps
       - name: Install Deno
@@ -89,3 +125,15 @@ jobs:
         with:
           name: lethean.exe
           path: build/bin/
+  pack-macos:
+    runs-on: macos-latest
+    needs:
+      - macos
+    steps:
+      - run: wget https://github.com/letheanVPN/launchers/releases/download/v1.0.0/macos.zip
+      - run: unzip -j macos.zip -x **/._*
+      - uses: actions/download-artifact@v2
+        with:
+          name: lethean.app
+      - run: mv lethean.app macos/lethean.app
+      - run: zip -m9r lethean-gui-macos.zip ./macos
