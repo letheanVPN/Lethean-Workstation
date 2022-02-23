@@ -42,6 +42,30 @@ jobs:
         with:
           name: lethean.app
           path: build/bin/
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
+      - run: npm install --legacy-peer-deps
+      - run: cd frontend && npm install --legacy-peer-deps
+      - name: Install Deno
+        run: curl -fsSL https://deno.land/x/install/install.sh | sh && echo "$HOME/.deno/bin" >> $GITHUB_PATH
+      - name: Build
+        run: wails build --platform linux/amd64
+      - run: chmod +x build/bin/lethean
+      - uses: actions/upload-artifact@v2
+        with:
+          name: lethean
+          path: build/bin/
   windows:
     runs-on: windows-2022
     steps:
