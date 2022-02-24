@@ -4,7 +4,6 @@ build/cli
 # IDEs
 .idea
 .vscode
-package-lock.json
 # The black hole that is...
 node_modules
 frontend/node_modules

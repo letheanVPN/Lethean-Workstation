@@ -1,16 +1,16 @@
 {
-  "name": "lethean",
+  "name": "lethean-desktop",
   "license": "EUPL-1.2",
-  "version": "0.0.1",
-  "description": "Lethean GUI APP",
-  "homepage": "https://github.com/letheanVPN/workstation/wiki",
+  "version": "4.0.1",
+  "description": "Lethean Desktop Toolkit",
+  "homepage": "https://github.com/letheanVPN/desktop/wiki",
   "bugs": {
-    "url": "https://github.com/letheanVPN/workstation/issues",
+    "url": "https://github.com/letheanVPN/desktop/issues",
     "email": "hello@lt.hn"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/letheanVPN/workstation.git"
+    "url": "https://github.com/letheanVPN/desktop.git"
   },
   "workspaces": [
     "frontend",
