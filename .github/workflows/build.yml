@@ -58,7 +58,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: macos-lethean.app.zip
-          path: ./
+          path: macos-lethean.app.zip
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
@@ -104,7 +104,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: linux-lethean.zip
-          path: ./
+          path: linux-lethean.zip
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
@@ -147,7 +147,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: windows-lethean.zip
-          path: ./
+          path: windows-lethean.zip
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
