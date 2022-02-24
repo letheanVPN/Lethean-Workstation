@@ -61,7 +61,7 @@ jobs:
         run: wails build --platform darwin/amd64
       - run: chmod +x build/bin/lethean.app/Contents/MacOS/lethean
       - name: 'Tar files'
-        run: tar -cvf macos-lethean-desktop.tar build/bin/
+        run: cd build/bin/ && tar -cvf ../../macos-lethean-desktop.tar .
       - uses: actions/upload-artifact@v2
         with:
           name: macOS Desktop
@@ -114,7 +114,7 @@ jobs:
         run: wails build --platform linux/amd64
       - run: chmod +x build/bin/lethean
       - name: 'Tar files'
-        run: tar -cvf linux-lethean-desktop.tar build/bin/
+        run: cd build/bin/ && tar -cvf ../../linux-lethean-desktop.tar .
       - uses: actions/upload-artifact@v2
         with:
           name: Linux Desktop
