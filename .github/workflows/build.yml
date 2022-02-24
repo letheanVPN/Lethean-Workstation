@@ -60,15 +60,17 @@ jobs:
       - name: Build
         run: wails build --platform darwin/amd64
       - run: chmod +x build/bin/lethean.app/Contents/MacOS/lethean
+      - name: 'Tar files'
+        run: tar -cvf macos-lethean-desktop.tar build/bin/
       - uses: actions/upload-artifact@v2
         with:
           name: macOS Desktop
-          path: build/bin/
+          path: macos-lethean-desktop.tar
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: build/bin/
+          files: macos-lethean-desktop.tar
   linux:
     runs-on: ubuntu-latest
     steps:
@@ -111,15 +113,17 @@ jobs:
       - name: Build
         run: wails build --platform linux/amd64
       - run: chmod +x build/bin/lethean
+      - name: 'Tar files'
+        run: tar -cvf linux-lethean-desktop.tar build/bin/
       - uses: actions/upload-artifact@v2
         with:
           name: Linux Desktop
-          path: build/bin/
+          path: linux-lethean-desktop.tar
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: build/bin/
+          files: linux-lethean-desktop.tar
   windows:
     runs-on: windows-2022
     steps:
@@ -159,12 +163,14 @@ jobs:
         run: iwr https://deno.land/x/install/install.ps1 -useb | iex
       - name: Build
         run: wails build --platform windows
+      - name: 'Tar files'
+        run: tar -cvf windows-lethean-desktop.tar build/bin/
       - uses: actions/upload-artifact@v2
         with:
           name: Windows Desktop
-          path: build/bin/
+          path: windows-lethean-desktop.tar
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: build/bin/
+          files: windows-lethean-desktop.tar
