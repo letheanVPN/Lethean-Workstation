@@ -173,7 +173,7 @@ jobs:
           dest: windows-lethean.zip
       - uses: actions/upload-artifact@v2
         with:
-          mame: Windows Desktop
+          name: Windows Desktop
           path: windows-lethean.zip
       - name: Release
         uses: softprops/action-gh-release@v1
