@@ -163,14 +163,12 @@ jobs:
         run: iwr https://deno.land/x/install/install.ps1 -useb | iex
       - name: Build
         run: wails build --platform windows
-      - name: 'Tar files'
-        run: tar -cvf windows-lethean-desktop.tar D:\a\desktop\desktop\build\bin\
       - uses: actions/upload-artifact@v2
         with:
           name: Windows Desktop
-          path: windows-lethean-desktop.tar
+          path: build/bin/
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: windows-lethean-desktop.tar
+          files: build/bin/lethean.exe
