@@ -135,5 +135,5 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: lethean.app
-      - run: mv lethean.app macos/lethean.app
       - run: zip -m9r lethean-gui-macos.zip ./macos
+      - run: mv lethean.app macos/lethean.app
