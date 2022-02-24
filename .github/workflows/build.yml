@@ -66,6 +66,7 @@ jobs:
           dest: macos-lethean.app.zip
       - uses: actions/upload-artifact@v2
         with:
+          name: macOS Desktop
           path: macos-lethean.app.zip
       - name: Release
         uses: softprops/action-gh-release@v1
@@ -120,6 +121,7 @@ jobs:
           dest: linux-lethean.zip
       - uses: actions/upload-artifact@v2
         with:
+          name: Linux Desktop
           path: linux-lethean.zip
       - name: Release
         uses: softprops/action-gh-release@v1
@@ -171,6 +173,7 @@ jobs:
           dest: windows-lethean.zip
       - uses: actions/upload-artifact@v2
         with:
+          mame: Windows Desktop
           path: windows-lethean.zip
       - name: Release
         uses: softprops/action-gh-release@v1
