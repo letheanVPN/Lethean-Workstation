@@ -164,7 +164,7 @@ jobs:
       - name: Build
         run: wails build --platform windows
       - name: 'Tar files'
-        run: tar -cvf windows-lethean-desktop.tar build/bin/
+        run: tar -cvf windows-lethean-desktop.tar build\bin\
       - uses: actions/upload-artifact@v2
         with:
           name: Windows Desktop
