@@ -51,15 +51,18 @@ jobs:
       - name: Build
         run: wails build --platform darwin/amd64
       - run: chmod +x build/bin/lethean.app/Contents/MacOS/lethean
+      - uses: papeloto/action-zip@v1
+        with:
+          files: build/bin/lethean.app 
+          dest: macos-lethean.app.zip
       - uses: actions/upload-artifact@v2
         with:
-          name: lethean.app
-          path: build/bin/
+          name: macos-lethean.app.zip
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: build/bin/lethean.app
+          files: macos-lethean.app.zip
   linux:
     runs-on: ubuntu-latest
     steps:
@@ -93,15 +96,18 @@ jobs:
       - name: Build
         run: wails build --platform linux/amd64
       - run: chmod +x build/bin/lethean
+      - uses: papeloto/action-zip@v1
+        with:
+          files: build/bin/lethean
+          dest: linux-lethean.zip
       - uses: actions/upload-artifact@v2
         with:
-          name: lethean
-          path: build/bin/
+          name: linux-lethean.zip
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: build/bin/lethean
+          files: linux-lethean.zip
   windows:
     runs-on: windows-2022
     steps:
@@ -132,12 +138,15 @@ jobs:
         run: iwr https://deno.land/x/install/install.ps1 -useb | iex
       - name: Build
         run: wails build --platform windows
+      - uses: papeloto/action-zip@v1
+        with:
+          files: build/bin/lethean.exe 
+          dest: windows-lethean.zip
       - uses: actions/upload-artifact@v2
         with:
-          name: lethean.exe
-          path: build/bin/
+          name: windows-lethean.zip
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: build/bin/lethean.exe
+          files: windows-lethean.zip
