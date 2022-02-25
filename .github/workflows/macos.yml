@@ -68,7 +68,7 @@ jobs:
         run: curl -fsSL https://deno.land/x/install/install.sh | sh && echo "$HOME/.deno/bin" >> $GITHUB_PATH
       # runs: wails build creating a packaged exe
       - name: Build
-        run: wails build --platform darwin/amd64
+        run: wails build --platform darwin/universal
       - run: chmod +x build/bin/lethean.app/Contents/MacOS/lethean
       - name: 'Tar files'
         run: cd build/bin/ && tar -cvf ../../macos-lethean-desktop.tar .
