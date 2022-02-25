@@ -2,7 +2,9 @@
 
 Lethean GUI
 
-[![Build](https://github.com/letheanVPN/workstation/actions/workflows/build.yml/badge.svg)](https://github.com/letheanVPN/workstation/actions/workflows/build.yml)
+[![Linux](https://github.com/letheanVPN/workstation/actions/workflows/linux.yml/badge.svg)](https://github.com/letheanVPN/workstation/actions/workflows/linux.yml)
+[![macOS](https://github.com/letheanVPN/workstation/actions/workflows/macos.yml/badge.svg)](https://github.com/letheanVPN/workstation/actions/workflows/macos.yml)
+[![Windows](https://github.com/letheanVPN/workstation/actions/workflows/windows.yml/badge.svg)](https://github.com/letheanVPN/workstation/actions/workflows/windows.yml)
 
 ## Sub Projects
 These are the lethean elements used for this project
