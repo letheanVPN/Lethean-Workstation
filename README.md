@@ -1,4 +1,4 @@
-# Workstation
+# Lethean Desktop
 
 Lethean GUI
 
