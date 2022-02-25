@@ -2,6 +2,7 @@ name: Windows
 permissions:
   contents: write
 
+# Build for everything on "main" & "v*.*.*"
 on:
   push:
     branches:
@@ -22,27 +23,31 @@ jobs:
   windows:
     runs-on: windows-2022
     steps:
+      # Checkout code
       - uses: actions/checkout@v2
         with:
           submodules: recursive
+      # Install / Setup Nodejs v16
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
+      # Install GoLang
       - uses: actions/setup-go@v2
         with:
           go-version: 1.17
+      # Setup node module caching
       - name: Cache node modules
         uses: actions/cache@v2
         env:
           cache-name: cache-node-modules
         with:
-          # npm cache files are stored in `~/.npm` on Linux/macOS
           path: '%AppData%/npm-cache'
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
+      # Set up GoLang cache
       - name: Go Cache
         uses: actions/cache@v2
         with:
@@ -52,16 +57,22 @@ jobs:
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
+      # Helper NPM module install
       - run: npm install --legacy-peer-deps
+      # Install desktop-angular-app dependencies
       - run: cd frontend && npm install --legacy-peer-deps
+      # runs deno installer
       - name: Install Deno
         run: iwr https://deno.land/x/install/install.ps1 -useb | iex
+      # runs: wails build creating a packaged exe
       - name: Build
         run: wails build --platform windows
+      # uploads the job file, makes no release
       - uses: actions/upload-artifact@v2
         with:
           name: Windows Desktop
           path: build/bin/
+      # if this is a tag build, upload
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')

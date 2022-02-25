@@ -2,6 +2,7 @@ name: macOS
 permissions:
   contents: write
 
+# Build for everything on "main" & "v*.*.*"
 on:
   push:
     branches:
@@ -22,16 +23,20 @@ jobs:
   macos:
     runs-on: macos-latest
     steps:
+      # Checkout code
       - uses: actions/checkout@v2
         with:
           submodules: recursive
+      # Install / Setup Nodejs v16
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
+      # Install GoLang
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
           go-version: 1.17
+      # Setup node module caching
       - name: Cache node modules
         uses: actions/cache@v2
         env:
@@ -44,6 +49,7 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
+      # Set up GoLang cache
       - name: Go Cache
         uses: actions/cache@v2
         with:
@@ -53,19 +59,25 @@ jobs:
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
+      # Helper NPM module install
       - run: npm install --legacy-peer-deps
+      # Install desktop-angular-app dependencies
       - run: cd frontend && npm install --legacy-peer-deps
+      # runs deno installer
       - name: Install Deno
         run: curl -fsSL https://deno.land/x/install/install.sh | sh && echo "$HOME/.deno/bin" >> $GITHUB_PATH
+      # runs: wails build creating a packaged exe
       - name: Build
         run: wails build --platform darwin/amd64
       - run: chmod +x build/bin/lethean.app/Contents/MacOS/lethean
       - name: 'Tar files'
         run: cd build/bin/ && tar -cvf ../../macos-lethean-desktop.tar .
+      # uploads the job file, makes no release
       - uses: actions/upload-artifact@v2
         with:
           name: macOS Desktop
           path: macos-lethean-desktop.tar
+      # if this is a tag build, upload
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
