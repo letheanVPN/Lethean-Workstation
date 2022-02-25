@@ -4,13 +4,11 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"log"
 	"os"
 	"os/exec"
-	"path/filepath"
 	goruntime "runtime"
-
 )
-
 
 var spawnCmd *exec.Cmd
 
@@ -28,7 +26,7 @@ func NewApp() *App {
 func (b *App) startup(ctx context.Context) {
 	// Perform your setup here
 	b.ctx = ctx
-	homeDir, _ := os.UserHomeDir()
+	//homeDir, _ := os.UserHomeDir()
 	exeName := ""
 	//
 	if goruntime.GOOS == "windows" {
@@ -36,21 +34,31 @@ func (b *App) startup(ctx context.Context) {
 	} else {
 		exeName = "lethean-server"
 	}
-	// make folder $HOME/Lethean
 
-	exePath := filepath.Join(homeDir, "Lethean", exeName)
+	//exePath := filepath.Join(homeDir, "Lethean", exeName)
 
-	if _, err := os.Stat(exePath); err == nil {
-	    fmt.Println("LTHN Found, Starting backend service")
-        spawnCmd = exec.Command(exePath, "backend", "start")
+	if _, err := os.Stat(exeName); err == nil {
+		fmt.Println("LTHN Found, Starting backend service")
+		fmt.Println(exeName)
+
+		if goruntime.GOOS == "windows" {
+			cmd := exec.Command(`lethean-server.exe`)
+			if _, err := cmd.Output(); err != nil {
+				log.Println("Error:", err)
+			}
+		} else {
+			spawnCmd = exec.Command(exeName)
+			_, err := spawnCmd.Output()
+
+			if err != nil {
+				fmt.Println(err)
+				// panic(err)
+			}
+		}
+
 	} else if errors.Is(err, os.ErrNotExist) {
-	    fmt.Println("Please make sure lethean-server in installed")
+		fmt.Println("Please make sure lethean-server in installed")
 		//_ = os.WriteFile(exePath, data, 0777)
-	}
-	_, err := spawnCmd.Output()
-	if err != nil {
-	    fmt.Println(err)
-		 panic(err)
 	}
 
 }
@@ -68,5 +76,3 @@ func (b *App) shutdown(ctx context.Context) {
 		return
 	}
 }
-
-
