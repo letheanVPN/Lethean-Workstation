@@ -18,3 +18,9 @@ These are the lethean elements used for this project
 ```shell
 npm install --legacy-peer-deps
 ```
+
+## Build
+
+```shell
+npm run build
+```

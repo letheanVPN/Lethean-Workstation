@@ -1,10 +1,4 @@
 export interface go {
-  "main": {
-    "App": {
-		ShowDialog():Promise<void>
-    },
-  }
-
 }
 
 declare global {
