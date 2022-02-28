@@ -26,7 +26,6 @@ func NewApp() *App {
 func (b *App) startup(ctx context.Context) {
 	// Perform your setup here
 	b.ctx = ctx
-	//homeDir, _ := os.UserHomeDir()
 	exeName := ""
 	//
 	if goruntime.GOOS == "windows" {
@@ -42,23 +41,17 @@ func (b *App) startup(ctx context.Context) {
 		fmt.Println(exeName)
 
 		if goruntime.GOOS == "windows" {
-			cmd := exec.Command(`lethean-server.exe`)
-			if _, err := cmd.Output(); err != nil {
-				log.Println("Error:", err)
-			}
+			spawnCmd = exec.Command("cmd.exe", "/C", "start", "/b", exeName, "backend", "start")
 		} else {
-			spawnCmd = exec.Command(exeName)
-			_, err := spawnCmd.Output()
+			spawnCmd = exec.Command(exeName, "backend", "start")
+		}
+		if err := spawnCmd.Start(); err != nil {
+			log.Println("Error:", err)
 
-			if err != nil {
-				fmt.Println(err)
-				// panic(err)
-			}
 		}
 
 	} else if errors.Is(err, os.ErrNotExist) {
 		fmt.Println("Please make sure lethean-server in installed")
-		//_ = os.WriteFile(exePath, data, 0777)
 	}
 
 }

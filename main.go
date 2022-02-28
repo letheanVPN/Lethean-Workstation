@@ -33,7 +33,7 @@ func main() {
 		HideWindowOnClose: false,
 		RGBA:              &options.RGBA{R: 255, G: 255, B: 255, A: 255},
 		Assets:            assets,
-		LogLevel:          logger.INFO,
+		LogLevel:          logger.ERROR,
 		OnStartup:         app.startup,
 		OnDomReady:        app.domReady,
 		OnShutdown:        app.shutdown,
@@ -45,6 +45,7 @@ func main() {
 			WebviewIsTransparent: false,
 			WindowIsTranslucent:  false,
 			DisableWindowIcon:    false,
+			WebviewUserDataPath:  "Data\\webview",
 		},
 	})
 
