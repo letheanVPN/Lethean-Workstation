@@ -62,7 +62,7 @@ jobs:
       # Install Wails build deps
       - run: sudo apt-get install libgtk-3-0 libwebkit2gtk-4.0-dev
       # Install desktop-angular-app dependencies
-      - run: cd frontend && npm install --legacy-peer-deps
+      - run: cd frontend && npm install --legacy-peer-deps && npm run build
       # runs deno installer
       - name: Install Deno
         run: curl -fsSL https://deno.land/x/install/install.sh | sh && echo "$HOME/.deno/bin" >> $GITHUB_PATH

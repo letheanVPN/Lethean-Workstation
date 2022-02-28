@@ -60,7 +60,7 @@ jobs:
       # Helper NPM module install
       - run: npm install --legacy-peer-deps
       # Install desktop-angular-app dependencies
-      - run: cd frontend && npm install --legacy-peer-deps
+      - run: cd frontend && npm install --legacy-peer-deps && npm run build
       # runs deno installer
       - name: Install Deno
         run: iwr https://deno.land/x/install/install.ps1 -useb | iex
