@@ -3,6 +3,7 @@
   "assetdir": "./frontend/dist/lethean-desktop/browser",
   "frontend:install": "npm install --legacy-peer-deps",
   "frontend:dev": "npm run build",
+  "frontend:build": "npm run build",
   "wailsjsdir": "./",
   "version": "2",
   "Path": "",

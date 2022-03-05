@@ -2,7 +2,7 @@ module lethean-server
 
 go 1.17
 
-require github.com/wailsapp/wails/v2 v2.0.0-beta.32
+require github.com/wailsapp/wails/v2 v2.0.0-beta.33
 
 require (
 	github.com/andybalholm/brotli v1.0.2 // indirect
