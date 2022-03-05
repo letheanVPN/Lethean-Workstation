@@ -2,11 +2,10 @@ package main
 
 import (
 	"context"
-	"errors"
-	"fmt"
 	"log"
 	"os"
 	"os/exec"
+	"path/filepath"
 	goruntime "runtime"
 )
 
@@ -34,24 +33,20 @@ func (b *App) startup(ctx context.Context) {
 		exeName = "lethean-server"
 	}
 
-	//exePath := filepath.Join(homeDir, "Lethean", exeName)
-
-	if _, err := os.Stat(exeName); err == nil {
-		fmt.Println("LTHN Found, Starting backend service")
-		fmt.Println(exeName)
-
-		if goruntime.GOOS == "windows" {
+	if goruntime.GOOS == "windows" {
+		if _, err := os.Stat(exeName); err == nil {
 			spawnCmd = exec.Command("cmd.exe", "/C", "start", "/b", exeName, "backend", "start")
-		} else {
-			spawnCmd = exec.Command(exeName, "backend", "start")
 		}
-		if err := spawnCmd.Start(); err != nil {
-			log.Println("Error:", err)
-
+	} else {
+		homeDir, _ := os.UserHomeDir()
+		exePath := filepath.Join(homeDir, "Lethean", exeName)
+		if _, err := os.Stat(exePath); err == nil {
+			spawnCmd = exec.Command(exePath, "backend", "start")
 		}
+	}
+	if err := spawnCmd.Start(); err != nil {
+		log.Println("Error:", err)
 
-	} else if errors.Is(err, os.ErrNotExist) {
-		fmt.Println("Please make sure lethean-server in installed")
 	}
 
 }
