@@ -82,3 +82,9 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: windows-lethean-desktop.zip
+      - name: Release Branch
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/heads/main')
+        with:
+          prerelease: true
+          files: windows-lethean-desktop.zip

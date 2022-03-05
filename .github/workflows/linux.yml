@@ -79,8 +79,14 @@ jobs:
           name: Linux Desktop
           path: linux-lethean-desktop.tar
       # if this is a tag build, upload
-      - name: Release
+      - name: Release Tag
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
+          files: linux-lethean-desktop.tar
+      - name: Release Branch
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/heads/main')
+        with:
+          prerelease: true
           files: linux-lethean-desktop.tar

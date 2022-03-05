@@ -83,4 +83,10 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: macos-lethean-desktop.tar
+      - name: Release Branch
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/heads/main')
+        with:
+          prerelease: true
+          files: macos-lethean-desktop.tar
 
