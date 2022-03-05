@@ -1,4 +1,4 @@
-name: macOS Universal
+name: macOS Intel
 permissions:
   contents: write
 
@@ -68,26 +68,26 @@ jobs:
         run: curl -fsSL https://deno.land/x/install/install.sh | sh && echo "$HOME/.deno/bin" >> $GITHUB_PATH
       # runs: wails build creating a packaged exe
       - name: Build
-        run: wails build --platform darwin/universal
+        run: wails build --platform darwin/amd54
       - run: chmod +x build/bin/lethean.app/Contents/MacOS/lethean
       - name: 'Tar files'
-        run: cd build/bin/ && tar -cvf ../../macos-lethean-desktop.tar .
+        run: cd build/bin/ && tar -cvf ../../macos-amd64-lethean-desktop.tar .
       # uploads the job file, makes no release
       - uses: actions/upload-artifact@v2
         with:
-          name: macOS Univesal Desktop
-          path: macos-lethean-desktop.tar
+          name: macOS Intel Desktop
+          path: macos-amd64-lethean-desktop.tar
       # if this is a tag build, upload
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: macos-lethean-desktop.tar
+          files: macos-amd64-lethean-desktop.tar
       - name: Release Branch
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/heads/main')
         with:
           tag_name: canary
           prerelease: true
-          files: macos-lethean-desktop.tar
+          files: macos-amd64-lethean-desktop.tar
 
