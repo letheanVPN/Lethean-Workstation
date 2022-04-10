@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"log"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -28,26 +27,26 @@ func (b *App) startup(ctx context.Context) {
 	exeName := ""
 	//
 	if goruntime.GOOS == "windows" {
-		exeName = "lethean-server.exe"
+		exeName = "lthn.exe"
 	} else {
-		exeName = "lethean-server"
+		exeName = "lthn"
 	}
+	homeDir, _ := os.Getwd()
+	exePath := filepath.Join(homeDir, exeName)
 
 	if goruntime.GOOS == "windows" {
-		if _, err := os.Stat(exeName); err == nil {
-			spawnCmd = exec.Command("cmd.exe", "/C", "start", "/b", exeName, "backend", "start")
+		if _, err := os.Stat(exePath); err == nil {
+			spawnCmd = exec.Command("cmd.exe", "/C", "start", "/b", exePath, "server")
 		}
 	} else {
-		homeDir, _ := os.UserHomeDir()
-		exePath := filepath.Join(homeDir, "Lethean", exeName)
 		if _, err := os.Stat(exePath); err == nil {
-			spawnCmd = exec.Command(exePath, "backend", "start")
+			spawnCmd = exec.Command(exePath, "server")
 		}
 	}
-	if err := spawnCmd.Start(); err != nil {
-		log.Println("Error:", err)
-
-	}
+	//if err := spawnCmd.Start(); err != nil {
+	//	log.Println("Error:", err)
+	//
+	//}
 
 }
 
