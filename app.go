@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"log"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -41,12 +42,19 @@ func (b *App) startup(ctx context.Context) {
 	} else {
 		if _, err := os.Stat(exePath); err == nil {
 			spawnCmd = exec.Command(exePath, "server")
+		} else if goruntime.GOOS == "darwin" {
+			homeDir, _ := os.Getwd()
+			log.Println("homedir:", homeDir)
+			exePath := filepath.Join(homeDir, "../../..", exeName)
+			log.Println("exepath:", exePath)
+			spawnCmd = exec.Command(exePath, "server")
+
 		}
 	}
-	//if err := spawnCmd.Start(); err != nil {
-	//	log.Println("Error:", err)
-	//
-	//}
+	if err := spawnCmd.Start(); err != nil {
+		log.Println("Error:", err)
+
+	}
 
 }
 
