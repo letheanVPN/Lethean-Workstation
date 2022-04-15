@@ -1,22 +1,26 @@
 {
   "name": "lethean",
+  "reloaddirs": "frontend/dist",
   "assetdir": "./frontend/dist/lethean-desktop/browser",
   "frontend:install": "npm install --legacy-peer-deps",
-  "frontend:dev": "npm run build",
   "frontend:build": "npm run build",
   "wailsjsdir": "./",
   "version": "2",
-  "Path": "",
-  "BuildDir": "",
   "outputfilename": "lethean",
-  "OutputType": "",
-  "Platform": "",
   "Author": {
     "name": "Snider",
     "email": "snider@lt.hn"
   },
   "debounceMS": 100,
   "devserverurl": "http://localhost:34115",
-  "appargs": ""
+  "appargs": "",
+  "runNonNativeBuildHooks": false,
+  "info": {
+    "companyName": "Lethean LTD",
+    "productName": "Lethean Desktop",
+    "productVersion": "4.2.0",
+    "copyright": "Lethean LTD - Open Source",
+    "comments": "Lethean all in one desktop app"
+  }
 }
 

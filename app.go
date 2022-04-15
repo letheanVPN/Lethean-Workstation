@@ -41,13 +41,26 @@ func (b *App) startup(ctx context.Context) {
 		}
 	} else {
 		if _, err := os.Stat(exePath); err == nil {
+			log.Println("exePath:", exePath)
 			spawnCmd = exec.Command(exePath, "server")
 		} else if goruntime.GOOS == "darwin" {
 			homeDir, _ := os.Getwd()
-			log.Println("homedir:", homeDir)
+			exe, _ := os.Executable()
 			exePath := filepath.Join(homeDir, "../../..", exeName)
-			log.Println("exepath:", exePath)
-			spawnCmd = exec.Command(exePath, "server")
+			log.Println("exePath:", filepath.Dir(exe))
+			if filepath.Base(filepath.Dir(exe)) == "MacOS" {
+				err := os.Chdir(filepath.Join(filepath.Dir(exe), "../../.."))
+				if err != nil {
+					log.Println("Error:", err)
+					return
+				}
+			}
+			homeDir, _ = os.Getwd()
+			log.Println("homeDir:", homeDir)
+			log.Println("exePath:", exePath)
+			// if exePath and homeDir are not the same, we are running inside a macOS .app
+
+			spawnCmd = exec.Command(filepath.Join(homeDir, exeName), "server")
 
 		}
 	}
