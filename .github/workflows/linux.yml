@@ -43,6 +43,7 @@ jobs:
             ${{ runner.os }}-go-
       # Install Wails build deps
       - run: sudo apt-get update && sudo apt-get install libgtk-3-0 libwebkit2gtk-4.0-dev
+      - run: go install github.com/wailsapp/wails/v2/cmd/wails@latest
       # runs: wails build creating a packaged exe
       - name: Build
         run: wails build --platform linux/amd64

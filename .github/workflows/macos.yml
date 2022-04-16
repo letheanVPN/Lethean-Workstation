@@ -42,6 +42,7 @@ jobs:
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
+      - run: go install github.com/wailsapp/wails/v2/cmd/wails@latest
       # runs: wails build creating a packaged exe
       - name: Build
         run: wails build --platform darwin/universal
