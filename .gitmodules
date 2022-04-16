@@ -1,6 +1,0 @@
-[submodule "server"]
-	path = server
-	url = https://github.com/letheanVPN/lethean-server.git
-[submodule "frontend"]
-	path = frontend
-	url = https://github.com/letheanVPN/desktop-angular-app.git
