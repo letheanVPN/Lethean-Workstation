@@ -3,6 +3,8 @@ permissions:
   contents: write
 # Build for everything on "main" & "v*.*.*"
 on:
+  repository_dispatch:
+    types: [ build ]
   push:
     branches:
       - 'main'
