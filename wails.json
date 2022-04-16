@@ -2,7 +2,7 @@
   "name": "lethean",
   "reloaddirs": "frontend",
   "assetdir": "./frontend",
-  "frontend:build": "npm run frontend",
+  "frontend:install": "npm run frontend",
   "wailsjsdir": "./frontend",
   "version": "2",
   "outputfilename": "lethean",

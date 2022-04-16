@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"log"
+	"fmt"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -23,8 +23,18 @@ func NewApp() *App {
 
 // startup is called at application startup
 func (b *App) startup(ctx context.Context) {
+	exe, _ := os.Executable()
+
+	if filepath.Base(filepath.Dir(exe)) == "MacOS" {
+		homeDir = filepath.Join(filepath.Dir(exe), "../../..")
+	} else {
+		homeDir = filepath.Dir(exe)
+	}
+
+	log.Info(filepath.Dir(exe))
 	// Perform your setup here
 	b.ctx = ctx
+
 	exeName := ""
 	//
 	if goruntime.GOOS == "windows" {
@@ -32,42 +42,27 @@ func (b *App) startup(ctx context.Context) {
 	} else {
 		exeName = "lthn"
 	}
-	homeDir, _ := os.Getwd()
 	exePath := filepath.Join(homeDir, exeName)
 
 	if goruntime.GOOS == "windows" {
 		if _, err := os.Stat(exePath); err == nil {
-			log.Println("Found lthn.exe:", exePath)
-			spawnCmd = exec.Command("cmd.exe", "/C", "start", "/b", exePath)
+			log.Debug("Found lthn.exe:" + exePath)
+			spawnCmd = exec.Command("cmd.exe", "/C", "start", "/b", exePath, "server")
 		} else {
-			log.Println("Error Could not find lthn.exe:", exePath)
+			log.Debug("Error Could not find lthn.exe:" + exePath)
 		}
 	} else {
 		if _, err := os.Stat(exePath); err == nil {
-			log.Println("exePath:", exePath)
+			log.Debug("Found lthn.exe:" + exePath)
 			spawnCmd = exec.Command(exePath, "server")
 		} else if goruntime.GOOS == "darwin" {
-			homeDir, _ := os.Getwd()
-			exe, _ := os.Executable()
-			exePath := filepath.Join(homeDir, "../../..", exeName)
-			log.Println("exePath:", filepath.Dir(exe))
-			if filepath.Base(filepath.Dir(exe)) == "MacOS" {
-				err := os.Chdir(filepath.Join(filepath.Dir(exe), "../../.."))
-				if err != nil {
-					log.Println("Error:", err)
-					return
-				}
-			}
-			homeDir, _ = os.Getwd()
-			log.Println("homeDir:", homeDir)
-			log.Println("exePath:", exePath)
-			// if exePath and homeDir are not the same, we are running inside a macOS .app
 
 			spawnCmd = exec.Command(filepath.Join(homeDir, exeName), "server")
 
 		}
 		if err := spawnCmd.Start(); err != nil {
-			log.Println("Error:", err)
+			log.Debug("lthn.exe error")
+			fmt.Println(err.Error())
 		}
 	}
 
@@ -76,11 +71,13 @@ func (b *App) startup(ctx context.Context) {
 // domReady is called after the front-end dom has been loaded
 func (b *App) domReady(ctx context.Context) {
 	// Add your action here
+	log.Debug("domReady finished")
 }
 
 // shutdown is called at application termination
 func (b *App) shutdown(ctx context.Context) {
 	// Perform your teardown here
+	log.Debug("Desktop Shutdown")
 	err := spawnCmd.Process.Kill()
 	if err != nil {
 		return
