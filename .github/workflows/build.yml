@@ -170,8 +170,9 @@ jobs:
       - windows
       - macos
     steps:
-      - run: |
-          curl -X POST https://api.github.com/repos/letheanVPN/launchers/dispatches \ 
-          -H 'Accept: application/vnd.github.v3+json' \
-          -u ${{ secrets.ACCESS_TOKEN }} \
-          -d '{"event_type": "build", "client_payload": {}}'
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          event-type: build
+
