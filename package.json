@@ -18,6 +18,7 @@
     "build": "wails build --clean",
     "clean": "rimraf **/node_modules **/*-lock.json **/*.json.md5",
     "postinstall": "go install github.com/wailsapp/wails/v2/cmd/wails@latest && cd frontend && npm install --legacy-peer-deps",
+    "frontend": "wget https://github.com/letheanVPN/lthn-app-desktop/releases/latest/download/lethean-ui.zip && unzip -u lethean-ui.zip -d frontend",
     "dev:git-update": "git submodule sync && git submodule update",
     "be:serve": "deno run -A --unstable --import-map server/vendor/import_map.json server/mod.ts server"
   },
