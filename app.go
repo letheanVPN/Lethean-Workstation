@@ -37,7 +37,10 @@ func (b *App) startup(ctx context.Context) {
 
 	if goruntime.GOOS == "windows" {
 		if _, err := os.Stat(exePath); err == nil {
-			spawnCmd = exec.Command("cmd.exe", "/C", "start", "/b", exePath, "server")
+			log.Println("Found lthn.exe:", exePath)
+			spawnCmd = exec.Command("cmd.exe", "/C", "start", "/b", exePath)
+		} else {
+			log.Println("Error Could not find lthn.exe:", exePath)
 		}
 	} else {
 		if _, err := os.Stat(exePath); err == nil {
@@ -63,10 +66,9 @@ func (b *App) startup(ctx context.Context) {
 			spawnCmd = exec.Command(filepath.Join(homeDir, exeName), "server")
 
 		}
-	}
-	if err := spawnCmd.Start(); err != nil {
-		log.Println("Error:", err)
-
+		if err := spawnCmd.Start(); err != nil {
+			log.Println("Error:", err)
+		}
 	}
 
 }
