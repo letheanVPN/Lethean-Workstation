@@ -46,7 +46,7 @@ jobs:
       # Install Wails build deps
       - run: sudo apt-get update && sudo apt-get install libgtk-3-0 libwebkit2gtk-4.0-dev
       - run: go install github.com/wailsapp/wails/v2/cmd/wails@latest
-      # runs: wails build creating a packaged exe
+      - run: curl -L -O https://github.com/letheanVPN/lthn-app-desktop/releases/latest/download/lethean-ui.zip && unzip -u lethean-ui.zip -d frontend
       - name: Build
         run: wails build --platform linux/amd64
       - run: chmod +x build/bin/lethean
@@ -93,7 +93,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-go-
       - run: go install github.com/wailsapp/wails/v2/cmd/wails@latest
-      # runs: wails build creating a packaged exe
+      - run: curl -L -O https://github.com/letheanVPN/lthn-app-desktop/releases/latest/download/lethean-ui.zip && unzip -u lethean-ui.zip -d frontend
       - name: Build
         run: wails build --platform darwin/universal
       - run: chmod +x build/bin/lethean.app/Contents/MacOS/lethean
@@ -138,7 +138,7 @@ jobs:
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
-      # runs: wails build creating a packaged exe
+      - run: curl -L -O https://github.com/letheanVPN/lthn-app-desktop/releases/latest/download/lethean-ui.zip && unzip -u lethean-ui.zip -d frontend
       - run: go install github.com/wailsapp/wails/v2/cmd/wails@latest
       - name: Build
         run: wails build --platform windows
