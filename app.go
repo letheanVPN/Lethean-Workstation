@@ -54,11 +54,6 @@ func (b *App) startup(ctx context.Context) {
 	if err != nil {
 		log.Fatal("cmd.Start failed: " + err.Error())
 	}
-	err = spawnCmd.Process.Release()
-	if err != nil {
-		log.Fatal("cmd.Process.Release failed: " + err.Error())
-	}
-
 }
 
 // domReady is called after the front-end dom has been loaded
