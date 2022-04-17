@@ -47,10 +47,16 @@ func (b *App) startup(ctx context.Context) {
 			log.Info("Starting lthn.exe: " + exePath)
 			spawnCmd = exec.Command(exePath, "server")
 		}
+	}
 
-		if err := spawnCmd.Start(); err != nil {
-			log.Debug("lthn.exe error: " + err.Error())
-		}
+	log.Info("Running command and waiting for it to finish...")
+	err := spawnCmd.Start()
+	if err != nil {
+		log.Fatal("cmd.Start failed: " + err.Error())
+	}
+	err = spawnCmd.Process.Release()
+	if err != nil {
+		log.Fatal("cmd.Process.Release failed: " + err.Error())
 	}
 
 }
