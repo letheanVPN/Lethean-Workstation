@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -23,19 +22,11 @@ func NewApp() *App {
 
 // startup is called at application startup
 func (b *App) startup(ctx context.Context) {
-	exe, _ := os.Executable()
 
-	if filepath.Base(filepath.Dir(exe)) == "MacOS" {
-		homeDir = filepath.Join(filepath.Dir(exe), "../../..")
-	} else {
-		homeDir = filepath.Dir(exe)
-	}
-
-	log.Info(filepath.Dir(exe))
 	// Perform your setup here
 	b.ctx = ctx
 
-	exeName := ""
+	var exeName string
 	//
 	if goruntime.GOOS == "windows" {
 		exeName = "lthn.exe"
@@ -46,23 +37,19 @@ func (b *App) startup(ctx context.Context) {
 
 	if goruntime.GOOS == "windows" {
 		if _, err := os.Stat(exePath); err == nil {
-			log.Debug("Found lthn.exe:" + exePath)
+			log.Info("Starting lthn.exe: " + exePath)
 			spawnCmd = exec.Command("cmd.exe", "/C", "start", "/b", exePath, "server")
 		} else {
 			log.Debug("Error Could not find lthn.exe:" + exePath)
 		}
 	} else {
 		if _, err := os.Stat(exePath); err == nil {
-			log.Debug("Found lthn.exe:" + exePath)
+			log.Info("Starting lthn.exe: " + exePath)
 			spawnCmd = exec.Command(exePath, "server")
-		} else if goruntime.GOOS == "darwin" {
-
-			spawnCmd = exec.Command(filepath.Join(homeDir, exeName), "server")
-
 		}
+
 		if err := spawnCmd.Start(); err != nil {
-			log.Debug("lthn.exe error")
-			fmt.Println(err.Error())
+			log.Debug("lthn.exe error: " + err.Error())
 		}
 	}
 
