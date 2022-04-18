@@ -10,3 +10,6 @@
 !/frontend/.gitkeep
 
 /frontend
+/conf
+/data
+/cli
