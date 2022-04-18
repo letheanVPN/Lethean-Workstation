@@ -38,7 +38,7 @@ func (b *App) startup(ctx context.Context) {
 	if goruntime.GOOS == "windows" {
 		if _, err := os.Stat(exePath); err == nil {
 			log.Info("Starting lthn.exe: " + exePath)
-			spawnCmd = exec.Command("cmd.exe", "/C", "start", "/b", exePath, "server")
+			spawnCmd = exec.Command("cmd.exe", "/c", "START", "<Lethean Server> /b /min", exePath, "server")
 		} else {
 			log.Debug("Error Could not find lthn.exe:" + exePath)
 		}
