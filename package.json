@@ -15,7 +15,7 @@
   "private": true,
   "scripts": {
     "start": "wails dev",
-    "build": "wails build --clean",
+    "build": "wails build --clean -webview2 embed",
     "clean": "rimraf **/node_modules **/*-lock.json **/*.json.md5",
     "postinstall": "go install github.com/wailsapp/wails/v2/cmd/wails@latest && npm run frontend",
     "frontend": "curl -L -O https://github.com/letheanVPN/lthn-app-desktop/releases/latest/download/lethean-ui.zip && tar -x -f lethean-ui.zip -C frontend",
