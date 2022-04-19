@@ -95,7 +95,7 @@ jobs:
       - run: go install github.com/wailsapp/wails/v2/cmd/wails@latest
       - run: curl -L -O https://github.com/letheanVPN/lthn-app-desktop/releases/latest/download/lethean-ui.zip && unzip -u lethean-ui.zip -d frontend
       - name: Build
-        run: wails build --platform darwin/universal -webview2 embed
+        run: wails build --platform darwin/universal -webview2 embed --noPackage
       - run: chmod +x build/bin/lethean.app/Contents/MacOS/lethean
       - name: 'Tar files'
         run: cd build/bin/ && tar -cvf ../../macos-lethean-desktop.tar .

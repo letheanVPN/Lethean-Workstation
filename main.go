@@ -19,15 +19,19 @@ var homeDir string
 var log logger.Logger
 
 func main() {
-	cd, _ := os.Getwd()
 	exe, _ := os.Executable()
-	fmt.Println(cd)
+
 	fmt.Println(exe)
 	if filepath.Base(filepath.Dir(exe)) == "MacOS" {
 		fmt.Println("Inside a macOS .app, pushing out of virtual fs space")
 		homeDir = filepath.Dir(filepath.Dir(filepath.Dir(filepath.Dir(exe))))
 	} else {
-		homeDir = cd
+		homeDir = filepath.Dir(exe)
+	}
+	cerr := os.Chdir(homeDir)
+	if cerr != nil {
+		fmt.Println(cerr)
+		return
 	}
 	fmt.Println("HomeDir" + homeDir)
 	if _, err := os.Stat(filepath.Join(homeDir, "data", "logs")); err != nil {
@@ -44,7 +48,7 @@ func main() {
 	var logLvl logger.LogLevel
 	envLog, ok := os.LookupEnv("LTHN_LOG_LEVEL")
 	if !ok {
-		logLvl = 2
+		logLvl = 4
 	} else {
 		log.Debug("LogLevel adjusted to " + envLog)
 		logLvl, _ = logger.StringToLogLevel(envLog)
