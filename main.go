@@ -28,11 +28,7 @@ func main() {
 	} else {
 		homeDir = filepath.Dir(exe)
 	}
-	cerr := os.Chdir(homeDir)
-	if cerr != nil {
-		fmt.Println(cerr)
-		return
-	}
+
 	fmt.Println("HomeDir" + homeDir)
 	if _, err := os.Stat(filepath.Join(homeDir, "data", "logs")); err != nil {
 
@@ -41,7 +37,7 @@ func main() {
 	}
 
 	log = logger.NewFileLogger(filepath.Join(homeDir, "data", "logs", "desktop.log"))
-	log.Info("Using Base Directory: " + homeDir)
+	fmt.Println("Using Base Directory: " + homeDir)
 	// Create an instance of the app structure
 	app := NewApp()
 
@@ -87,6 +83,6 @@ func main() {
 	})
 
 	if err != nil {
-		log.Info("error: " + err.Error())
+		fmt.Println("error: " + err.Error())
 	}
 }

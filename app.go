@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -37,22 +38,27 @@ func (b *App) startup(ctx context.Context) {
 
 	if goruntime.GOOS == "windows" {
 		if _, err := os.Stat(exePath); err == nil {
-			log.Info("Starting lthn.exe: " + exePath)
+			fmt.Println("Starting lthn.exe: " + exePath)
 			spawnCmd = exec.Command("cmd.exe", "/c", "START", "<Lethean Server> /b /min", exePath, "server")
 		} else {
-			log.Debug("Error Could not find lthn.exe:" + exePath)
+			fmt.Println("Error Could not find lthn.exe:" + exePath)
 		}
 	} else {
 		if _, err := os.Stat(exePath); err == nil {
-			log.Info("Starting lthn.exe: " + exePath)
+			fmt.Println("Starting lthn.exe: " + exePath)
 			spawnCmd = exec.Command(exePath, "server")
 		}
 	}
 
-	log.Info("Running command and waiting for it to finish...")
+	cerr := os.Chdir(homeDir)
+	if cerr != nil {
+		fmt.Println(cerr)
+		return
+	}
+	fmt.Println("Running command and waiting for it to finish...")
 	err := spawnCmd.Start()
 	if err != nil {
-		log.Fatal("cmd.Start failed: " + err.Error())
+		fmt.Println("cmd.Start failed: " + err.Error())
 	}
 }
 
