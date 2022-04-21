@@ -118,7 +118,7 @@ jobs:
       # uploads the job file, makes no release
       - uses: actions/upload-artifact@v2
         with:
-          name: macOS Univesal Desktop
+          name: macOS Universal Desktop
           path: macos-lethean-desktop.tar
       # if this is a tag build, upload
       - name: Release
