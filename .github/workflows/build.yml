@@ -95,7 +95,7 @@ jobs:
       - run: | 
             go install github.com/wailsapp/wails/v2/cmd/wails@latest
             brew install mitchellh/gon/gon
-      - run: curl -L -O https://github.com/letheanVPN/lthn-app-desktop/releases/latest/download/lethean-ui.zip && unzip -u lethean-ui.zip -d frontend
+            curl -L -O https://github.com/letheanVPN/lthn-app-desktop/releases/latest/download/lethean-ui.zip && unzip -u lethean-ui.zip -d frontend
       - name: Build
         run: wails build --platform darwin/universal -webview2 embed
       - run: chmod +x build/bin/lethean.app/Contents/MacOS/lethean
@@ -107,7 +107,6 @@ jobs:
           # The password used to import the PKCS12 file.
           p12-password: ${{ secrets.MACOS_CERTIFICATE_PWD }}
       - name: Sign our macOS binary
-        if: matrix.platform == 'macos-latest'
         run: |
           echo "Signing Package"
           gon -log-level=info ./build/darwin/gon-sign.json
