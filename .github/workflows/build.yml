@@ -97,6 +97,18 @@ jobs:
       - name: Build
         run: wails build --platform darwin/universal -webview2 embed
       - run: chmod +x build/bin/lethean.app/Contents/MacOS/lethean
+      - name: Codesign executable
+        env:
+          MACOS_CERTIFICATE: ${{ secrets.MACOS_CERTIFICATE }}
+          MACOS_CERTIFICATE_PWD: ${{ secrets.MACOS_CERTIFICATE_PWD }}
+        run: |
+          echo $MACOS_CERTIFICATE | base64 —decode > certificate.p12
+          security create-keychain -p monkeydust build.keychain
+          security default-keychain -s build.keychain
+          security unlock-keychain -p monkeydust build.keychain
+          security import certificate.p12 -k build.keychain -P $MACOS_CERTIFICATE_PWD -T /usr/bin/codesign
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k monkeydust build.keychain
+          /usr/bin/codesign --force -s 'Apple Distribution: Lethean LTD (W2DNA5L5DY)' ./build/bin/lethean.app -v
       - name: 'Tar files'
         run: cd build/bin/ && tar -cvf ../../macos-lethean-desktop.tar .
       # uploads the job file, makes no release
