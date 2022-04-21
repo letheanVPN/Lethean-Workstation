@@ -9,10 +9,6 @@
     "application_identity" : "Developer ID Application: Lethean LTD (W2DNA5L5DY)",
     "entitlements_file": "./build/darwin/entitlements.plist"
   },
-  "dmg" :{
-    "output_path":  "lethean.dmg",
-    "volume_name":  "Lethean"
-  },
   "notarize": [{
     "path": "./build/bin/lethean.app",
     "bundle_id": "com.lthn.app",
