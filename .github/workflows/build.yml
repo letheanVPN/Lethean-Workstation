@@ -107,6 +107,8 @@ jobs:
           # The password used to import the PKCS12 file.
           p12-password: ${{ secrets.MACOS_CERTIFICATE_PWD }}
       - name: Sign our macOS binary
+        env:
+          APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
         run: |
           echo "Signing Package"
           gon -log-level=info ./build/darwin/gon-sign.json
