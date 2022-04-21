@@ -10,7 +10,7 @@
     "entitlements_file": "./build/darwin/entitlements.plist"
   },
   "notarize": [{
-    "path": "./build/bin/lethean.app",
+    "path": "./build/bin/lethean.app/Contents/MacOS/lethean",
     "bundle_id": "com.lthn.app",
     "staple": true
   }]
