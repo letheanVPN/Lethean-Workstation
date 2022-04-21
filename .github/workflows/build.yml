@@ -104,9 +104,9 @@ jobs:
         uses: Apple-Actions/import-codesign-certs@v1
         with:
           # The certificates in a PKCS12 file encoded as a base64 string
-          p12-file-base64: ${{ secrets.MACOS_CERTIFICATE }}
+          p12-file-base64: ${{ secrets.MAC_DEVELOPER_CERT }}
           # The password used to import the PKCS12 file.
-          p12-password: ${{ secrets.MACOS_CERTIFICATE_PWD }}
+          p12-password: ${{ secrets.MAC_DEVELOPER_PASS }}
       - name: Sign our macOS binary
         if: startsWith(github.ref, 'refs/tags/')
         env:

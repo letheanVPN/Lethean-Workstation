@@ -6,7 +6,7 @@
     "password": "@env:APPLE_PASSWORD"
   },
   "sign" :{
-    "application_identity" : "Apple Distribution: Lethean LTD (W2DNA5L5DY)",
+    "application_identity" : "Developer ID Application: Lethean LTD (W2DNA5L5DY)",
     "entitlements_file": "./build/darwin/entitlements.plist"
   },
   "dmg" :{
