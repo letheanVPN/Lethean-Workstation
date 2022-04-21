@@ -14,7 +14,7 @@
     "volume_name":  "Lethean"
   },
   "notarize": [{
-    "path": "./build/bin",
+    "path": "./build/bin/lethean.app",
     "bundle_id": "com.lthn.app",
     "staple": true
   }]
