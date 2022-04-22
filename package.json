@@ -14,15 +14,17 @@
   },
   "private": true,
   "scripts": {
-    "start": "wails dev",
+    "dev": "wails dev",
     "build": "wails build --clean -webview2 embed",
     "clean": "rimraf **/node_modules **/*-lock.json **/*.json.md5",
     "postinstall": "go install github.com/wailsapp/wails/v2/cmd/wails@latest && npm run frontend",
     "frontend": "curl -L -O https://github.com/letheanVPN/lthn-app-desktop/releases/latest/download/lethean-ui.zip && tar -x -f lethean-ui.zip -C frontend",
     "dev:git-update": "git submodule sync && git submodule update",
     "be:serve": "deno run -A --unstable --import-map server/vendor/import_map.json server/mod.ts server",
-    "pkg:zip:macos": "ditto -c -k --keepParent ./build/bin/lethean.app ./build/bin/lethean.zip",
-    "installer::macos": "productbuild --sign 'Developer ID Installer: Lethean LTD (W2DNA5L5DY)' --component ./build/bin/lethean.app ./build/bin/lethean.pkg"
+    "macos:app:zip": "ditto -c -k --keepParent ./build/bin/lethean.app ./build/bin/lethean.app.zip",
+    "macos:sign": "gon -log-level=info ./build/darwin/gon-sign.json",
+    "macos:notarize": "gon -log-level=info ./build/darwin/gon-sign.json",
+    "macos:app:installer": "productbuild --sign 'Developer ID Installer: Lethean LTD (W2DNA5L5DY)' --component ./build/bin/lethean.app ./build/bin/lethean.pkg"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.5",

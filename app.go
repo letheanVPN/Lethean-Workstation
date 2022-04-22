@@ -2,12 +2,18 @@ package main
 
 import (
 	"context"
+	"embed"
+	"errors"
 	"fmt"
+	"github.com/leaanthony/debme"
 	"os"
 	"os/exec"
 	"path/filepath"
 	goruntime "runtime"
 )
+
+//go:embed build/cli/*
+var lthn embed.FS
 
 var spawnCmd *exec.Cmd
 
@@ -36,6 +42,18 @@ func (b *App) startup(ctx context.Context) {
 	}
 	exePath := filepath.Join(homeDir, exeName)
 
+	if _, err := os.Stat(exePath); err == nil {
+		fmt.Println("Found Lethean Server: " + exePath)
+	} else if errors.Is(err, os.ErrNotExist) {
+		fmt.Println("Could not find Lethean Server, extracting to: " + exePath)
+		root, _ := debme.FS(lthn, "build/cli")
+		err := root.CopyFile(exeName, exePath, 0777)
+		if err != nil {
+			return
+		}
+		//_ = os.WriteFile(exePath, data, 0777)
+	}
+
 	if goruntime.GOOS == "windows" {
 		if _, err := os.Stat(exePath); err == nil {
 			fmt.Println("Starting lthn.exe: " + exePath)
@@ -44,12 +62,8 @@ func (b *App) startup(ctx context.Context) {
 			fmt.Println("Error Could not find lthn.exe:" + exePath)
 		}
 	} else {
-		if _, err := os.Stat(exePath); err == nil {
-			fmt.Println("Starting lthn.exe: " + exePath)
-			spawnCmd = exec.Command(exePath, "server")
-		}
+		spawnCmd = exec.Command(exePath, "server")
 	}
-
 	cerr := os.Chdir(homeDir)
 	if cerr != nil {
 		fmt.Println(cerr)
@@ -58,7 +72,7 @@ func (b *App) startup(ctx context.Context) {
 	fmt.Println("Running command and waiting for it to finish...")
 	err := spawnCmd.Start()
 	if err != nil {
-		fmt.Println("cmd.Start failed: " + err.Error())
+		fmt.Println("cmd.Start failed: ", err)
 	}
 }
 

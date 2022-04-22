@@ -19,15 +19,8 @@ var homeDir string
 var log logger.Logger
 
 func main() {
-	exe, _ := os.Executable()
-
-	fmt.Println(exe)
-	if filepath.Base(filepath.Dir(exe)) == "MacOS" {
-		fmt.Println("Inside a macOS .app, pushing out of virtual fs space")
-		homeDir = filepath.Dir(filepath.Dir(filepath.Dir(filepath.Dir(exe))))
-	} else {
-		homeDir = filepath.Dir(exe)
-	}
+	homeDir, _ = os.UserHomeDir()
+	homeDir = filepath.Join(homeDir, "Lethean")
 
 	fmt.Println("HomeDir" + homeDir)
 	if _, err := os.Stat(filepath.Join(homeDir, "data", "logs")); err != nil {
@@ -83,6 +76,6 @@ func main() {
 	})
 
 	if err != nil {
-		fmt.Println("error: " + err.Error())
+		fmt.Println("error: ", err)
 	}
 }
