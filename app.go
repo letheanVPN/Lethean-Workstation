@@ -12,7 +12,7 @@ import (
 	goruntime "runtime"
 )
 
-//go:embed build/cli/*
+//go:embed server/build
 var lthn embed.FS
 
 var spawnCmd *exec.Cmd
@@ -46,7 +46,7 @@ func (b *App) startup(ctx context.Context) {
 		fmt.Println("Found Lethean Server: " + exePath)
 	} else if errors.Is(err, os.ErrNotExist) {
 		fmt.Println("Could not find Lethean Server, extracting to: " + exePath)
-		root, _ := debme.FS(lthn, "build/cli")
+		root, _ := debme.FS(lthn, "server/build")
 		err := root.CopyFile(exeName, exePath, 0777)
 		if err != nil {
 			return
