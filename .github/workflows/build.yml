@@ -160,7 +160,7 @@ jobs:
         with:
           path: |
             %LocalAppData%\go-build
-            ~/go/pkg/mod
+            ~\go\pkg\mod
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
