@@ -175,16 +175,16 @@ jobs:
           name: Windows Desktop
           if-no-files-found: error
           path: |
-            build/bin/lethean.exe
-            build/bin/lethean-amd64-installer.exe
+            build\bin\lethean.exe
+            build\bin\lethean-amd64-installer.exe
       # if this is a tag build, upload
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            build/bin/lethean.exe
-            build/bin/lethean-amd64-installer.exe
+            build\bin\lethean.exe
+            build\bin\lethean-amd64-installer.exe
 #
 #  lauchers:
 #    name: "Trigger: letheanVPN/launchers"
