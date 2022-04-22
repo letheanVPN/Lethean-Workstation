@@ -1,0 +1,15 @@
+{
+  "notarize": [{
+    "path": "./build/bin/lethean.pkg",
+    "bundle_id": "com.lthn.app",
+    "staple": true
+  },{
+    "path": "./build/bin/lethean.zip",
+    "bundle_id": "com.lthn.app",
+    "staple": false
+  }],
+  "apple_id": {
+    "username": "snider@lt.hn",
+    "password": "@env:APPLE_PASSWORD"
+  }
+}

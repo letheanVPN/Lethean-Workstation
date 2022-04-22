@@ -98,7 +98,8 @@ jobs:
             curl -L -O https://github.com/letheanVPN/lthn-app-desktop/releases/latest/download/lethean-ui.zip && unzip -u lethean-ui.zip -d frontend
       - name: Build
         run: wails build --platform darwin/universal -webview2 embed
-      - run: chmod +x build/bin/lethean.app/Contents/MacOS/lethean
+      - name: chmod +x exe
+        run: chmod +x build/bin/lethean.app/Contents/MacOS/lethean
       - name: Import Code-Signing Certificates for macOS
         uses: Apple-Actions/import-codesign-certs@v1
         with:
@@ -106,13 +107,25 @@ jobs:
           p12-file-base64: ${{ secrets.MAC_DEVELOPER_CERT }}
           # The password used to import the PKCS12 file.
           p12-password: ${{ secrets.MAC_DEVELOPER_PASS }}
+      - name: Import Code-Signing Certificates for macOS
+        uses: Apple-Actions/import-codesign-certs@v1
+        with:
+          # The certificates in a PKCS12 file encoded as a base64 string
+          p12-file-base64: ${{ secrets.MAC_DEVELOPER_INSTALL_CERT }}
+          # The password used to import the PKCS12 file.
+          p12-password: ${{ secrets.MAC_DEVELOPER_INSTALL_PASS }}
       - name: Sign our macOS binary
         env:
           APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
         run: |
           echo "Signing Package"
           gon -log-level=info ./build/darwin/gon-sign.json
-
+          echo "Building Zip file"
+          ditto -c -k --keepParent ./build/bin/lethean.app ./build/bin/lethean.zip
+          echo "Building Installer"
+          productbuild --sign 'Developer ID Installer: Lethean LTD (W2DNA5L5DY)' --component ./build/bin/lethean.app ./build/bin/lethean.pkg
+          echo "notarising Installer and zip"
+          gon -log-level=info ./build/darwin/gon-notarize.json
       - name: 'Tar files'
         run: cd build/bin/ && tar -cvf ../../macos-lethean-desktop.tar .
       # uploads the job file, makes no release
