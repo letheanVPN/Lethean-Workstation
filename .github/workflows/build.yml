@@ -114,6 +114,7 @@ jobs:
           p12-file-base64: ${{ secrets.MAC_DEVELOPER_INSTALL_CERT }}
           # The password used to import the PKCS12 file.
           p12-password: ${{ secrets.MAC_DEVELOPER_INSTALL_PASS }}
+          create-keychain: false
       - name: Sign our macOS binary
         env:
           APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
