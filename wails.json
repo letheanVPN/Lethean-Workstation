@@ -1,9 +1,12 @@
 {
   "name": "lethean",
-  "reloaddirs": "frontend",
-  "assetdir": "./frontend",
-  "frontend:install": "npm run frontend",
-  "wailsjsdir": "./frontend",
+  "reloaddirs": "frontend/src/dist/lethean-desktop/browser/",
+  "frontend:install": "npm install",
+  "frontend:build": "ng build",
+  "frontend:dev": "ng build -c development",
+  "frontend:dev:watcher": "ng build --watch --configuration development",
+  "frontend:dev:serverUrl": "http://localhost:4200",
+  "wailsjsdir": "./frontend/src/assets",
   "version": "2",
   "outputfilename": "lethean",
   "Author": {
@@ -11,7 +14,7 @@
     "email": "snider@lt.hn"
   },
   "debounceMS": 100,
-  "devserverurl": "http://localhost:34115",
+  "devServer": "http://localhost:34115",
   "appargs": "",
   "runNonNativeBuildHooks": false,
   "info": {
