@@ -30,20 +30,10 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
-      # Install Wails build deps
-      - name: Setup NodeJS
-        uses: actions/setup-node@v2
-        with:
-          node-version: 16.x
-      - uses: denoland/setup-deno@v1
-        with:
-          deno-version: v1.20.1
-      - run: cd server && npm run server:build:linux
-      - run: sudo apt-get update && sudo apt-get install libgtk-3-0 libwebkit2gtk-4.0-dev
       - uses: letheanVPN/wails-build-action@main
         with:
-          platform: linux/amd64
-      - run: chmod +x build/bin/lethean
+          build-platform: linux/amd64
+          deno-build: "cd server && npm run server:build:linux"
       - name: 'Tar files'
         run: cd build/bin/ && tar -cvf ../../linux-lethean-desktop.tar .
       # uploads the job file, makes no release
@@ -71,20 +61,10 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 16.x
-      - uses: denoland/setup-deno@v1
-        with:
-          deno-version: v1.20.1
-      - run: | 
-            brew install mitchellh/gon/gon
-            cd server && npm run server:build:macos-intel
       - uses: letheanVPN/wails-build-action@main
         with:
-          platform: darwin/universal
-      - name: chmod +x exe
-        run: chmod +x build/bin/*/Contents/MacOS/*
+          build-platform: darwin/universal
+          deno-build: "cd server && npm run server:build:macos-intel && cd .."
       - name: Import Code-Signing Certificates for macOS
         if: startsWith(github.ref, 'refs/tags/')
         uses: Apple-Actions/import-codesign-certs@v1
@@ -135,16 +115,10 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 16.x
-      - uses: denoland/setup-deno@v1
-        with:
-          deno-version: v1.20.1
-      - run: cd server && npm run server:build:windows
       - uses: letheanVPN/wails-build-action@main
         with:
           platform: windows/amd64
+          deno-build: "cd server && npm run server:build:windows && cd .."
       # uploads the job file, makes no release
       - uses: actions/upload-artifact@v2
         with:
