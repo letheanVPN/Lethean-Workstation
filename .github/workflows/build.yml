@@ -35,6 +35,9 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 16.x
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.20.1
       - run: cd server && npm run server:build:linux
       - run: sudo apt-get update && sudo apt-get install libgtk-3-0 libwebkit2gtk-4.0-dev
       - uses: letheanVPN/wails-build-action@main
