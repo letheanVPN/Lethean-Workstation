@@ -6,6 +6,7 @@ import (
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/logger"
 	"github.com/wailsapp/wails/v2/pkg/options"
+	"github.com/wailsapp/wails/v2/pkg/options/mac"
 	"github.com/wailsapp/wails/v2/pkg/options/windows"
 	"os"
 	"path/filepath"
@@ -56,22 +57,42 @@ func main() {
 		Fullscreen:        false,
 		Frameless:         false,
 		StartHidden:       false,
-		HideWindowOnClose: false,
+		HideWindowOnClose: true,
 		RGBA:              &options.RGBA{R: 255, G: 255, B: 255, A: 255},
 		Assets:            assets,
 		LogLevel:          logLvl,
 		OnStartup:         app.startup,
 		OnDomReady:        app.domReady,
 		OnShutdown:        app.shutdown,
+		OnBeforeClose:     app.beforeClose,
+		WindowStartState:  options.Maximised,
 		Bind: []interface{}{
 			app,
 		},
 		// Windows platform specific options
 		Windows: &windows.Options{
+			WebviewIsTransparent:              false,
+			WindowIsTranslucent:               false,
+			DisableWindowIcon:                 false,
+			DisableFramelessWindowDecorations: false,
+			WebviewUserDataPath:               "Data\\webview",
+		},
+		Mac: &mac.Options{
+			TitleBar: &mac.TitleBar{
+				TitlebarAppearsTransparent: false,
+				HideTitle:                  false,
+				HideTitleBar:               false,
+				FullSizeContent:            false,
+				UseToolbar:                 true,
+				HideToolbarSeparator:       false,
+			},
+			Appearance:           mac.NSAppearanceNameDarkAqua,
 			WebviewIsTransparent: false,
 			WindowIsTranslucent:  false,
-			DisableWindowIcon:    false,
-			WebviewUserDataPath:  "Data\\webview",
+			About: &mac.AboutInfo{
+				Title:   "Lethean Desktop",
+				Message: "© Lethean Desktop",
+			},
 		},
 	})
 
