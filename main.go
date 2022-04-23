@@ -75,7 +75,6 @@ func main() {
 			WindowIsTranslucent:               false,
 			DisableWindowIcon:                 false,
 			DisableFramelessWindowDecorations: false,
-			WebviewUserDataPath:               "data\\webview",
 		},
 		Mac: &mac.Options{
 			TitleBar: &mac.TitleBar{
