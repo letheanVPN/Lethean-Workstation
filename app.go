@@ -5,7 +5,7 @@ import (
 	"embed"
 	"errors"
 	"fmt"
-	"github.com/leaanthony/debme"
+	debme "github.com/leaanthony/debme"
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 	"os"
 	"os/exec"
@@ -52,6 +52,8 @@ func (b *App) startup(ctx context.Context) {
 		if err != nil {
 			return
 		}
+		root = debme.Debme{}
+		err = nil
 		//_ = os.WriteFile(exePath, data, 0777)
 	}
 
