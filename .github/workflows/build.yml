@@ -63,40 +63,13 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
-      - uses: letheanVPN/wails-build-action@v1
+      - uses: letheanVPN/wails-build-action@main
         with:
           build-platform: darwin/universal
           deno-build: "npm run server:build:macos-intel"
           deno-working-directory: "server"
           wails-build-webview2: "embed"
-      - name: Import Code-Signing Certificates for macOS
-        if: startsWith(github.ref, 'refs/tags/')
-        uses: Apple-Actions/import-codesign-certs@v1
-        with:
-          keychain-password: ${{ secrets.APPLE_PASSWORD }}
-          p12-file-base64: ${{ secrets.MAC_DEVELOPER_CERT }}
-          p12-password: ${{ secrets.MAC_DEVELOPER_PASS }}
-      - name: Import Code-Signing Certificates for macOS
-        if: startsWith(github.ref, 'refs/tags/')
-        uses: Apple-Actions/import-codesign-certs@v1
-        with:
-          keychain-password: ${{ secrets.APPLE_PASSWORD }}
-          p12-file-base64: ${{ secrets.MAC_DEVELOPER_INSTALL_CERT }}
-          p12-password: ${{ secrets.MAC_DEVELOPER_INSTALL_PASS }}
-          create-keychain: false
-      - name: Sign our macOS binary
-        if: startsWith(github.ref, 'refs/tags/')
-        env:
-          APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
-        run: |
-          echo "Signing Package"
-          gon -log-level=info ./build/darwin/gon-sign.json
-          echo "Building Zip file"
-          ditto -c -k --keepParent ./build/bin/lethean.app ./build/bin/lethean.app.zip
-          echo "Building Installer"
-          productbuild --sign 'Developer ID Installer: Lethean LTD (W2DNA5L5DY)' --component ./build/bin/lethean.app ./build/bin/lethean.pkg
-          echo "notarising Installer and zip"
-          gon -log-level=info ./build/darwin/gon-notarize.json
+          sign-macos-id-installer: "Developer ID Installer: Lethean LTD (W2DNA5L5DY)"
       # uploads the job file, makes no release
       - uses: actions/upload-artifact@v2
         with:
