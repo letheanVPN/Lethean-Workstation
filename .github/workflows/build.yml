@@ -65,7 +65,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
-      - uses: letheanVPN/wails-build-action@v1
+      - uses: letheanVPN/wails-build-action@main
         with:
           build-platform: windows/amd64
           deno-build: "npm run server:build:windows"
