@@ -69,7 +69,13 @@ jobs:
           deno-build: "npm run server:build:macos-intel"
           deno-working-directory: "server"
           wails-build-webview2: "embed"
-          sign-macos-id-installer: "Developer ID Installer: Lethean LTD (W2DNA5L5DY)"
+          sign-macos-apple-password: ${{ secrets.APPLE_PASSWORD }}
+          sign-macos-app-id: "Developer ID Application: Lethean LTD (W2DNA5L5DY)"
+          sign-macos-app-cert: ${{ secrets.MAC_DEVELOPER_CERT }}
+          sign-macos-app-cert-password: ${{ secrets.MACOS_DEVELOPER_PASSWORD }}
+          sign-macos-installer-id: "Developer ID Installer: Lethean LTD (W2DNA5L5DY)"
+          sign-macos-installer-cert: ${{ secrets.MAC_DEVELOPER_INSTALL_CERT }}
+          sign-macos-installer-cert-password: ${{ secrets.MAC_DEVELOPER_INSTALL_PASS }}
       # uploads the job file, makes no release
       - uses: actions/upload-artifact@v2
         with:
