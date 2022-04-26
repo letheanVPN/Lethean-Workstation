@@ -32,6 +32,7 @@ jobs:
           submodules: recursive
       - uses: letheanVPN/wails-build-action@main
         with:
+          build-name: lethean
           build-platform: linux/amd64
           deno-build: "npm run server:build:linux"
           deno-working-directory: "server"
@@ -45,6 +46,7 @@ jobs:
           submodules: recursive
       - uses: letheanVPN/wails-build-action@main
         with:
+          build-name: lethean
           build-platform: darwin/universal
           deno-build: "npm run server:build:macos-intel"
           deno-working-directory: "server"
@@ -53,7 +55,7 @@ jobs:
           sign-macos-apple-password: ${{ secrets.APPLE_PASSWORD }}
           sign-macos-app-id: "Developer ID Application: Lethean LTD (W2DNA5L5DY)"
           sign-macos-app-cert: ${{ secrets.MAC_DEVELOPER_CERT }}
-          sign-macos-app-cert-password: ${{ secrets.MAC_DEVELOPER_PASSWORD }}
+          sign-macos-app-cert-password: ${{ secrets.MAC_DEVELOPER_PASS }}
           sign-macos-installer-id: "Developer ID Installer: Lethean LTD (W2DNA5L5DY)"
           sign-macos-installer-cert: ${{ secrets.MAC_DEVELOPER_INSTALL_CERT }}
           sign-macos-installer-cert-password: ${{ secrets.MAC_DEVELOPER_INSTALL_PASS }}
@@ -67,6 +69,7 @@ jobs:
           submodules: recursive
       - uses: letheanVPN/wails-build-action@main
         with:
+          build-name: lethean
           build-platform: windows/amd64
           deno-build: "npm run server:build:windows"
           deno-working-directory: "server"
