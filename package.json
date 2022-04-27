@@ -15,7 +15,7 @@
   "private": true,
   "scripts": {
     "dev": "wails dev",
-    "build": "wails build --clean -webview2 embed",
+    "build": "wails build --clean -webview2 embed -debug",
     "clean": "rimraf **/node_modules **/*-lock.json **/*.json.md5",
     "postinstall": "go install github.com/wailsapp/wails/v2/cmd/wails@master",
     "dev:git-update": "git submodule sync && git submodule update",
