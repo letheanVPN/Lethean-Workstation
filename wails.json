@@ -6,7 +6,7 @@
   "frontend:dev": "npm run build:dev",
   "frontend:dev:watcher": "npm run watch",
   "wailsjsdir": "./frontend/src/assets",
-  "version": "2",
+  "version": "4.2.9",
   "Path": "",
   "BuildDir": "",
   "outputfilename": "lethean",
@@ -21,7 +21,7 @@
   "Info": {
     "companyName": "Lethean LTD",
     "productName": "Lethean Desktop",
-    "productVersion": "4.2.0",
+    "productVersion": "4.2.9",
     "copyright": "Lethean LTD - Open Source",
     "comments": "Lethean all in one desktop app"
   },
