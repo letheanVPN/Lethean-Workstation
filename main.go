@@ -75,6 +75,15 @@ func main() {
 			WindowIsTranslucent:               false,
 			DisableWindowIcon:                 false,
 			DisableFramelessWindowDecorations: false,
+			Theme:                             windows.SystemDefault,
+			CustomTheme: &windows.ThemeSettings{
+				DarkModeTitleBar:   windows.RGB(20, 20, 20),
+				DarkModeTitleText:  windows.RGB(200, 200, 200),
+				DarkModeBorder:     windows.RGB(20, 0, 20),
+				LightModeTitleBar:  windows.RGB(200, 200, 200),
+				LightModeTitleText: windows.RGB(20, 20, 20),
+				LightModeBorder:    windows.RGB(200, 200, 200),
+			},
 		},
 		Mac: &mac.Options{
 			TitleBar: &mac.TitleBar{
@@ -86,7 +95,7 @@ func main() {
 				HideToolbarSeparator:       false,
 			},
 			Appearance:           mac.NSAppearanceNameDarkAqua,
-			WebviewIsTransparent: false,
+			WebviewIsTransparent: true,
 			WindowIsTranslucent:  false,
 			About: &mac.AboutInfo{
 				Title:   "Lethean Desktop",
