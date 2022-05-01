@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	github.com/leaanthony/debme v1.2.1
-	github.com/wailsapp/wails/v2 v2.0.0-beta.35
+	github.com/wailsapp/wails/v2 v2.0.0-beta.36
 )
 
 require (
