@@ -4,7 +4,7 @@
   "frontend:build": "npm run build",
   "frontend:install": "npm install",
   "frontend:dev": "npm run build:dev",
-  "frontend:dev:watcher": "npm run be:serve",
+  "frontend:dev:watcher": "npm run watch",
   "wailsjsdir": "./frontend/src/assets",
   "version": "4.2.9",
   "Path": "",
