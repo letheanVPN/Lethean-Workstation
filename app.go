@@ -6,7 +6,6 @@ import (
 	"errors"
 	"fmt"
 	debme "github.com/leaanthony/debme"
-	"github.com/wailsapp/wails/v2/pkg/runtime"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -83,19 +82,6 @@ func (b *App) startup(ctx context.Context) {
 func (b *App) domReady(ctx context.Context) {
 	// Add your action here
 	log.Debug("domReady finished")
-}
-
-func (b *App) beforeClose(ctx context.Context) (prevent bool) {
-	dialog, err := runtime.MessageDialog(ctx, runtime.MessageDialogOptions{
-		Type:    runtime.QuestionDialog,
-		Title:   "Quit?",
-		Message: "Are you sure you want to quit?",
-	})
-
-	if err != nil {
-		return false
-	}
-	return dialog != "Yes"
 }
 
 // shutdown is called at application termination

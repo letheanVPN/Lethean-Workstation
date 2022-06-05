@@ -64,7 +64,6 @@ func main() {
 		OnStartup:         app.startup,
 		OnDomReady:        app.domReady,
 		OnShutdown:        app.shutdown,
-		OnBeforeClose:     app.beforeClose,
 		WindowStartState:  options.Maximised,
 		Bind: []interface{}{
 			app,
