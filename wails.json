@@ -2,7 +2,7 @@
   "name": "lethean",
   "reloaddirs": "frontend/dist/lethean-desktop/browser/",
   "frontend:build": "npm run build",
-  "frontend:install": "npm install",
+  "frontend:install": "npm install --legacy-peer-deps",
   "frontend:dev": "npm run build:dev",
   "frontend:dev:watcher": "npm run watch",
   "wailsjsdir": "./frontend/src/assets",
