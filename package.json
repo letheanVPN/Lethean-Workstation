@@ -19,7 +19,7 @@
     "clean": "rimraf **/node_modules **/*-lock.json **/*.json.md5",
     "postinstall": "go install github.com/wailsapp/wails/v2/cmd/wails@latest && npm update",
     "dev:git-update": "git submodule sync && git submodule update --remote",
-    "be:serve": "deno run -A --unstable --import-map server/vendor/import_map.json server/mod.ts server",
+    "be:serve": "deno run -A --unstable --config server/tsconfig.json --import-map server/vendor/import_map.json server/mod.ts server",
     "macos:app:zip": "ditto -c -k --keepParent ./build/bin/lethean.app ./build/bin/lethean.app.zip",
     "macos:sign": "gon -log-level=info ./build/darwin/gon-sign.json",
     "macos:notarize": "gon -log-level=info ./build/darwin/gon-sign.json",
