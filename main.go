@@ -16,12 +16,14 @@ import (
 var assets embed.FS
 
 var homeDir string
+var cliDir string
 
 var log logger.Logger
 
 func main() {
 	homeDir, _ = os.UserHomeDir()
 	homeDir = filepath.Join(homeDir, "Lethean")
+	cliDir = filepath.Join(homeDir, "cli")
 
 	fmt.Println("HomeDir" + homeDir)
 	if _, err := os.Stat(filepath.Join(homeDir, "data", "logs")); err != nil {
