@@ -1,13 +1,16 @@
 CLI_SUFFIX=
 DENO_VERSION := 1.22.3
-DENO_INSTALL := build/cli
+
 ifeq ($(OS),Windows_NT)
     HOST=windows
     CLI_SUFFIX=.exe
+    DENO_INSTALL = build\cli
 else
     HOST_S := $(shell uname -s)
+    DENO_INSTALL = build/cli
     ifeq ($(HOST_S),Linux)
         HOST=linux
+
     endif
     ifeq ($(HOST_S),Darwin)
         HOST +=macos
