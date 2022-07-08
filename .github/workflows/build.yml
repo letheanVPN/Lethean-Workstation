@@ -31,7 +31,7 @@ jobs:
         with:
           submodules: recursive
       - run: make setup
-      - uses: letheanVPN/wails-build-action@v2
+      - uses: dAppServer/wails-build-action@v2
         with:
           build-name: lethean
           build-platform: linux/amd64
@@ -46,7 +46,7 @@ jobs:
         with:
           submodules: recursive
       - run: make setup
-      - uses: letheanVPN/wails-build-action@v2
+      - uses: dAppServer/wails-build-action@v2
         with:
           build-name: lethean
           build-platform: darwin/universal
@@ -70,9 +70,9 @@ jobs:
         with:
           submodules: recursive
       - run: make setup
-      - uses: letheanVPN/wails-build-action@v2
+      - uses: dAppServer/wails-build-action@v2
         with:
-          build-name: lethean
+          build-name: lethean.exe
           build-platform: windows/amd64
           deno-build: "npm run server:build:windows"
           deno-working-directory: "server"
