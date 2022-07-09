@@ -29,10 +29,25 @@ endif
 
 include deno.mk
 
-.PHONY: all, setup, help
+.PHONY: all setup help clean build dev
 all: help
 
-setup: $(DENO_BIN) ## Get Build Dependencies
+dev: ## Run dev build
+	wails dev
+
+build: ## make prod build
+	wails build --clean -webview2 embed
+
+setup: ## Get Build Dependencies
+	(cd frontend && npm install --legacy-peer-deps)
+	(cd server && npm install)
+	npm install
+
+clean: ## removes all the installables
+	rm -rf ./node_nodules
+	rm -rf ./frontend/node_modules
+	rm -rf ./server/node_modules
+	rm -rf **/package.json.md5
 
 help: ## Show this help
 	@egrep -h '\s##\s' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m make %-30s\033[0m %s\n", $$1, $$2}'
