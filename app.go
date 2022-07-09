@@ -10,6 +10,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	goruntime "runtime"
+	"syscall"
 )
 
 //go:embed server/build
@@ -88,7 +89,7 @@ func (b *App) domReady(ctx context.Context) {
 func (b *App) shutdown(ctx context.Context) {
 	// Perform your teardown here
 	log.Debug("Desktop Shutdown")
-	err := spawnCmd.Process.Kill()
+	err := spawnCmd.Process.Signal(syscall.SIGTERM)
 	if err != nil {
 		return
 	}
