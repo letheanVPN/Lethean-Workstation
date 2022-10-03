@@ -53,7 +53,7 @@ jobs:
           deno-build: "npm run server:build:macos-intel"
           deno-working-directory: "server"
           wails-build-webview2: "embed"
-          sign: "true"
+          sign: "false"
           sign-macos-apple-password: ${{ secrets.APPLE_PASSWORD }}
           sign-macos-app-id: "Developer ID Application: Lethean LTD (W2DNA5L5DY)"
           sign-macos-app-cert: ${{ secrets.MAC_DEVELOPER_CERT }}
@@ -77,5 +77,5 @@ jobs:
           deno-build: "npm run server:build:windows"
           deno-working-directory: "server"
           wails-build-webview2: "embed"
-      
+
 
