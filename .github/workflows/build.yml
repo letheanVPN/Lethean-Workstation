@@ -38,7 +38,7 @@ jobs:
           deno-build: "npm run server:build:linux"
           deno-working-directory: "server"
           wails-build-webview2: "embed"
-          wails-version: v2.0.0-beta.44.2
+          wails-version: v2.0.0-beta.42
   macos:
     runs-on: macos-latest
     steps:
@@ -54,7 +54,7 @@ jobs:
           deno-build: "npm run server:build:macos-intel"
           deno-working-directory: "server"
           wails-build-webview2: "embed"
-          wails-version: v2.0.0-beta.44.2
+          wails-version: v2.0.0-beta.42
           sign: "false"
           sign-macos-apple-password: ${{ secrets.APPLE_PASSWORD }}
           sign-macos-app-id: "Developer ID Application: Lethean LTD (W2DNA5L5DY)"
@@ -79,6 +79,6 @@ jobs:
           deno-build: "npm run server:build:windows"
           deno-working-directory: "server"
           wails-build-webview2: "embed"
-          wails-version: v2.0.0-beta.44.2
+          wails-version: v2.0.0-beta.42
 
 
