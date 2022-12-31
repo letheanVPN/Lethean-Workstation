@@ -73,7 +73,7 @@ jobs:
           submodules: recursive
       - uses: dAppServer/wails-build-action@v2
         with:
-          build-name: lethean-windows
+          build-name: lethean-windows.exe
           build-platform: windows/amd64
           deno-build: "npm run server:build:windows"
           deno-working-directory: "server"
