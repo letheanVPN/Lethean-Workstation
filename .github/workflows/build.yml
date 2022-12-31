@@ -32,7 +32,7 @@ jobs:
           submodules: recursive
       - uses: dAppServer/wails-build-action@v2
         with:
-          build-name: lethean
+          build-name: lethean-linux
           build-platform: linux/amd64
           deno-build: "npm run server:build:linux"
           deno-working-directory: "server"
@@ -48,7 +48,7 @@ jobs:
           submodules: recursive
       - uses: dAppServer/wails-build-action@v2
         with:
-          build-name: lethean
+          build-name: lethean-macos
           build-platform: darwin/universal
           deno-build: "npm run server:build:macos-intel"
           deno-working-directory: "server"
@@ -73,7 +73,7 @@ jobs:
           submodules: recursive
       - uses: dAppServer/wails-build-action@v2
         with:
-          build-name: lethean.exe
+          build-name: lethean-windows
           build-platform: windows/amd64
           deno-build: "npm run server:build:windows"
           deno-working-directory: "server"
