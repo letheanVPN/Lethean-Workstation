@@ -72,6 +72,7 @@ func (b *App) startup(ctx context.Context) {
 		fmt.Println(cerr)
 		return
 	}
+	fmt.Println("Home Dir:" + homeDir)
 	fmt.Println("Running command and waiting for it to finish...")
 	err := spawnCmd.Start()
 	if err != nil {
