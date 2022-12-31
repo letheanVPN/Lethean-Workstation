@@ -37,7 +37,7 @@ jobs:
           deno-build: "npm run server:build:linux"
           deno-working-directory: "server"
           wails-build-webview2: "embed"
-          wails-version: "v2.2.0"
+          wails-version: "v2.3.1"
           go-version: ^1.18
   macos:
     runs-on: macos-latest
@@ -48,12 +48,12 @@ jobs:
           submodules: recursive
       - uses: dAppServer/wails-build-action@v2
         with:
-          build-name: lethean-macos
+          build-name: lethean
           build-platform: darwin/universal
           deno-build: "npm run server:build:macos-intel"
           deno-working-directory: "server"
           wails-build-webview2: "embed"
-          wails-version: "v2.2.0"
+          wails-version: "v2.3.1"
           go-version: ^1.18
           sign: "false"
           sign-macos-apple-password: ${{ secrets.APPLE_PASSWORD }}
@@ -78,7 +78,7 @@ jobs:
           deno-build: "npm run server:build:windows"
           deno-working-directory: "server"
           wails-build-webview2: "embed"
-          wails-version: v2.2.0
+          wails-version: v2.3.1
           go-version: ^1.18
 
 
