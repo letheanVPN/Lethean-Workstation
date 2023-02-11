@@ -37,9 +37,9 @@ func (b *App) startup(ctx context.Context) {
 	var exeName string
 	//
 	if goruntime.GOOS == "windows" {
-		exeName = "lthn.exe"
+		exeName = "lethean-gui-server.exe"
 	} else {
-		exeName = "lthn"
+		exeName = "lethean-gui-server"
 	}
 	exePath := filepath.Join(homeDir, exeName)
 
