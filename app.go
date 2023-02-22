@@ -118,3 +118,14 @@ func (b *App) GetUserSelectedFilePath() string {
 	fmt.Println("Selected File:" + file)
 	return file
 }
+
+// GetUserSelectedSaveFilePath returns the path of the file selected by the user
+func (b *App) GetUserSelectedSaveFilePath(defaultPath string) string {
+	file, err := runtime.SaveFileDialog(b.ctx, runtime.SaveDialogOptions{DefaultDirectory: defaultPath})
+
+	if err != nil {
+		return homeDir + "/wallet"
+	}
+	fmt.Println("Selected File:" + file)
+	return file
+}
