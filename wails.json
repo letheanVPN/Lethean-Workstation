@@ -4,7 +4,7 @@
   "frontend:dir":  "frontend/html_source",
   "frontend:build": "npm run build --html",
   "frontend:install": "npm install --legacy-peer-deps",
-  "frontend:dev:watcher": "npm run build --watch",
+  "frontend:dev:watcher": "npm run start",
   "frontend:dev:serverUrl": "http://localhost:4200",
   "wailsjsdir": "./frontend/html_source/src/assets",
   "version": "4.2.9",
