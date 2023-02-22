@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 	debme "github.com/leaanthony/debme"
+	"github.com/wailsapp/wails/v2/pkg/runtime"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -94,4 +95,26 @@ func (b *App) shutdown(ctx context.Context) {
 	if err != nil {
 		return
 	}
+}
+
+// GetUserSelectedDirectoryPath returns the path of the directory selected by the user
+func (b *App) GetUserSelectedDirectoryPath() string {
+	dir, err := runtime.OpenDirectoryDialog(b.ctx, runtime.OpenDialogOptions{})
+
+	if err != nil {
+		return homeDir
+	}
+	fmt.Println("Selected Dir:" + dir)
+	return dir
+}
+
+// GetUserSelectedFilePath returns the path of the file selected by the user
+func (b *App) GetUserSelectedFilePath() string {
+	file, err := runtime.OpenFileDialog(b.ctx, runtime.OpenDialogOptions{})
+
+	if err != nil {
+		return homeDir + "/wallet"
+	}
+	fmt.Println("Selected File:" + file)
+	return file
 }
