@@ -1,4 +1,4 @@
-module lethean-server
+module lethean-desktop
 
 go 1.18
 
