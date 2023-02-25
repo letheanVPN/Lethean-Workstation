@@ -100,7 +100,7 @@ func main() {
 			WindowIsTranslucent:  false,
 			About: &mac.AboutInfo{
 				Title:   "Lethean Desktop",
-				Message: "© Lethean Desktop",
+				Message: "© Lethean Community Interest Company",
 			},
 		},
 	})
