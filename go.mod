@@ -2,10 +2,7 @@ module lethean-desktop
 
 go 1.18
 
-require (
-	github.com/leaanthony/debme v1.2.1
-	github.com/wailsapp/wails/v2 v2.3.1
-)
+require github.com/wailsapp/wails/v2 v2.3.1
 
 require (
 	github.com/bep/debounce v1.2.1 // indirect

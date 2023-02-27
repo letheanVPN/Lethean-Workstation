@@ -2,10 +2,7 @@ package main
 
 import (
 	"context"
-	"embed"
-	"errors"
 	"fmt"
-	debme "github.com/leaanthony/debme"
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 	"os"
 	"os/exec"
@@ -14,8 +11,8 @@ import (
 	"syscall"
 )
 
-//go:embed server/build
-var lthn embed.FS
+////go:embed server/build
+//var lthn embed.FS
 
 var spawnCmd *exec.Cmd
 
@@ -44,19 +41,23 @@ func (b *App) startup(ctx context.Context) {
 	}
 	exePath := filepath.Join(homeDir, exeName)
 
-	if _, err := os.Stat(exePath); err == nil {
+	if _, err := os.Stat(filepath.Join(filepath.Dir(filepath.Join(exeDir)), exeName)); err == nil {
+		exePath = filepath.Join(filepath.Dir(filepath.Join(exeDir)), exeName)
 		fmt.Println("Found Lethean Server: " + exePath)
-	} else if errors.Is(err, os.ErrNotExist) {
-		fmt.Println("Could not find Lethean Server, extracting to: " + exePath)
-		root, _ := debme.FS(lthn, "server/build")
-		err := root.CopyFile(exeName, exePath, 0777)
-		if err != nil {
-			return
-		}
-		root = debme.Debme{}
-		err = nil
-		//_ = os.WriteFile(exePath, data, 0777)
+	} else if _, err := os.Stat(exePath); err == nil {
+		fmt.Println("Found Lethean Server: " + exePath)
 	}
+	//} else if errors.Is(err, os.ErrNotExist) {
+	//	fmt.Println("Could not find Lethean Server, extracting to: " + exePath)
+	//	root, _ := debme.FS(lthn, "server/build")
+	//	err := root.CopyFile(exeName, exePath, 0777)
+	//	if err != nil {
+	//		return
+	//	}
+	//	root = debme.Debme{}
+	//	err = nil
+	//	//_ = os.WriteFile(exePath, data, 0777)
+	//}
 
 	if goruntime.GOOS == "windows" {
 		if _, err := os.Stat(exePath); err == nil {

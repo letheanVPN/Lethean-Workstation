@@ -1,12 +1,11 @@
 {
   "name": "lethean",
-  "assetdir": "frontend/html",
-  "frontend:dir":  "frontend/html_source",
+  "assetdir": "frontend/dist",
   "frontend:build": "npm run build --html",
   "frontend:install": "npm install --legacy-peer-deps",
   "frontend:dev:watcher": "npm run start",
   "frontend:dev:serverUrl": "http://localhost:4200",
-  "wailsjsdir": "./frontend/html_source/src/assets",
+  "wailsjsdir": "./frontend/src/assets",
   "version": "4.2.9",
   "outputfilename": "lethean-desktop",
   "Author": {
