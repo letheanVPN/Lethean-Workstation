@@ -2,10 +2,8 @@ package main
 
 import (
 	"context"
-	"embed"
-	"errors"
 	"fmt"
-	debme "github.com/leaanthony/debme"
+	"github.com/wailsapp/wails/v2/pkg/runtime"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -13,8 +11,8 @@ import (
 	"syscall"
 )
 
-//go:embed server/build
-var lthn embed.FS
+////go:embed server/build
+//var lthn embed.FS
 
 var spawnCmd *exec.Cmd
 
@@ -37,25 +35,29 @@ func (b *App) startup(ctx context.Context) {
 	var exeName string
 	//
 	if goruntime.GOOS == "windows" {
-		exeName = "lthn.exe"
+		exeName = "lethean-gui-server.exe"
 	} else {
-		exeName = "lthn"
+		exeName = "lethean-gui-server"
 	}
 	exePath := filepath.Join(homeDir, exeName)
 
-	if _, err := os.Stat(exePath); err == nil {
+	if _, err := os.Stat(filepath.Join(filepath.Dir(filepath.Join(exeDir)), exeName)); err == nil {
+		exePath = filepath.Join(filepath.Dir(filepath.Join(exeDir)), exeName)
 		fmt.Println("Found Lethean Server: " + exePath)
-	} else if errors.Is(err, os.ErrNotExist) {
-		fmt.Println("Could not find Lethean Server, extracting to: " + exePath)
-		root, _ := debme.FS(lthn, "server/build")
-		err := root.CopyFile(exeName, exePath, 0777)
-		if err != nil {
-			return
-		}
-		root = debme.Debme{}
-		err = nil
-		//_ = os.WriteFile(exePath, data, 0777)
+	} else if _, err := os.Stat(exePath); err == nil {
+		fmt.Println("Found Lethean Server: " + exePath)
 	}
+	//} else if errors.Is(err, os.ErrNotExist) {
+	//	fmt.Println("Could not find Lethean Server, extracting to: " + exePath)
+	//	root, _ := debme.FS(lthn, "server/build")
+	//	err := root.CopyFile(exeName, exePath, 0777)
+	//	if err != nil {
+	//		return
+	//	}
+	//	root = debme.Debme{}
+	//	err = nil
+	//	//_ = os.WriteFile(exePath, data, 0777)
+	//}
 
 	if goruntime.GOOS == "windows" {
 		if _, err := os.Stat(exePath); err == nil {
@@ -94,4 +96,37 @@ func (b *App) shutdown(ctx context.Context) {
 	if err != nil {
 		return
 	}
+}
+
+// GetUserSelectedDirectoryPath returns the path of the directory selected by the user
+func (b *App) GetUserSelectedDirectoryPath() string {
+	dir, err := runtime.OpenDirectoryDialog(b.ctx, runtime.OpenDialogOptions{})
+
+	if err != nil {
+		return homeDir
+	}
+	fmt.Println("Selected Dir:" + dir)
+	return dir
+}
+
+// GetUserSelectedFilePath returns the path of the file selected by the user
+func (b *App) GetUserSelectedFilePath() string {
+	file, err := runtime.OpenFileDialog(b.ctx, runtime.OpenDialogOptions{})
+
+	if err != nil {
+		return homeDir + "/wallet"
+	}
+	fmt.Println("Selected File:" + file)
+	return file
+}
+
+// GetUserSelectedSaveFilePath returns the path of the file selected by the user
+func (b *App) GetUserSelectedSaveFilePath(defaultPath string) string {
+	file, err := runtime.SaveFileDialog(b.ctx, runtime.SaveDialogOptions{DefaultDirectory: defaultPath})
+
+	if err != nil {
+		return homeDir + "/wallet"
+	}
+	fmt.Println("Selected File:" + file)
+	return file
 }

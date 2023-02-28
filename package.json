@@ -20,10 +20,11 @@
     "postinstall": "go install github.com/wailsapp/wails/v2/cmd/wails@latest && npm update",
     "dev:git-update": "git submodule sync && git submodule update --remote",
     "be:serve": "deno run -A --unstable --config server/tsconfig.json --import-map server/vendor/import_map.json server/mod.ts server",
-    "macos:app:zip": "ditto -c -k --keepParent ./build/bin/lethean.app ./build/bin/lethean.app.zip",
+    "macos:app:zip": "ditto -c -k --keepParent ./build/bin/lethean.app ./build/bin/lethean-arm64.app.zip",
     "macos:sign": "gon -log-level=info ./build/darwin/gon-sign.json",
-    "macos:notarize": "gon -log-level=info ./build/darwin/gon-sign.json",
-    "macos:app:installer": "productbuild --sign 'Developer ID Installer: Lethean LTD (W2DNA5L5DY)' --component ./build/bin/lethean.app ./build/bin/lethean.pkg"
+    "macos:notarize": "gon -log-level=info ./build/darwin/gon-notarize.json",
+    "macos:app:installer": "productbuild --sign 'Developer ID Installer: Lethean LTD (W2DNA5L5DY)' --component ./build/bin/lethean.app ./build/bin/lethean-arm64.pkg",
+    "macos:gui:extra": "cd build/bin/lethean.app && wget https://github.com/letheanVPN/blockchain-iTw3/releases/latest/download/lethean-gui-bundle-macos-testnet-i386.tar.bz2 && tar -xjf lethean-gui-bundle-macos-testnet-i386.tar.bz2 && rm lethean-gui-bundle-macos-testnet-i386.tar.bz2"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.5",

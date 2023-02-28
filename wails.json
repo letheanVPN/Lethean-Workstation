@@ -1,9 +1,9 @@
 {
   "name": "lethean",
-  "reloaddirs": "frontend/dist/lethean-desktop/browser/",
-  "frontend:build": "npm run build",
+  "assetdir": "frontend/dist",
+  "frontend:build": "npm run build --html",
   "frontend:install": "npm install --legacy-peer-deps",
-  "frontend:dev:watcher": "npm run serve",
+  "frontend:dev:watcher": "npm run start",
   "frontend:dev:serverUrl": "http://localhost:4200",
   "wailsjsdir": "./frontend/src/assets",
   "version": "4.2.9",
@@ -16,7 +16,7 @@
     "companyName": "Lethean Community Interest Company",
     "productName": "Lethean Desktop",
     "productVersion": "4.2.9",
-    "copyright": "Lethean LTD - Open Source",
+    "copyright": "Lethean Community Interest Company",
     "comments": "Lethean all in one desktop app"
   },
   "devserverurl": "http://localhost:34115",

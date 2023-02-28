@@ -12,16 +12,18 @@ import (
 	"path/filepath"
 )
 
-//go:embed frontend/dist/lethean-desktop/browser
+//go:embed frontend/dist
 var assets embed.FS
 
 var homeDir string
+var exeDir string
 var cliDir string
 
 var log logger.Logger
 
 func main() {
 	homeDir, _ = os.UserHomeDir()
+	exeDir, _ = os.Executable()
 	homeDir = filepath.Join(homeDir, "Lethean")
 	cliDir = filepath.Join(homeDir, "cli")
 
@@ -100,7 +102,7 @@ func main() {
 			WindowIsTranslucent:  false,
 			About: &mac.AboutInfo{
 				Title:   "Lethean Desktop",
-				Message: "© Lethean Desktop",
+				Message: "© Lethean Community Interest Company",
 			},
 		},
 	})
