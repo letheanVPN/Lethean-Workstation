@@ -196,7 +196,7 @@ jobs:
           choco install zip -y
       - run: go install github.com/wailsapp/wails/v2/cmd/wails@latest
       - name: Build
-        run: wails build --platform windows/amd64 -webview2 embed -nsis
+        run: wails build --platform windows/amd64 -webview2 embed
       - name: package
         working-directory: ${{ github.workspace }}/build/bin
         run: |
