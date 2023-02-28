@@ -118,6 +118,10 @@ jobs:
           wget https://github.com/letheanVPN/blockchain-iTw3/releases/latest/download/lethean-gui-bundle-macos-testnet-i386.tar.bz2
           tar -xjf lethean-gui-bundle-macos-testnet-i386.tar.bz2
           rm lethean-gui-bundle-macos-testnet-i386.tar.bz2
+      - name: Zip .app
+        working-directory: ./build/bin
+        run: |
+           ditto -c -k --keepParent ./build/bin/lethean.app ./build/bin/lethean.app.zip
 
       #      - name: Import Code-Signing Certificates for macOS
 #        if: startsWith(github.ref, 'refs/tags/')
@@ -151,15 +155,13 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: macOS Universal Desktop
-          path: build/bin/
+          path: build/bin/lethean.app.zip
       # if this is a tag build, upload
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            build/bin/lethean.dmg
-            build/bin/lethean.pkg
             build/bin/lethean.app.zip
 
   windows:
