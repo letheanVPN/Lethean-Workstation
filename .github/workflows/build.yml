@@ -121,7 +121,7 @@ jobs:
       - name: Zip .app
         working-directory: ./build/bin
         run: |
-           ditto -c -k --keepParent ./build/bin/lethean.app ./build/bin/lethean.app.zip
+           ditto -c -k --keepParent ./lethean.app ./lethean.app.zip
 
       #      - name: Import Code-Signing Certificates for macOS
 #        if: startsWith(github.ref, 'refs/tags/')
