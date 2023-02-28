@@ -192,23 +192,27 @@ jobs:
       - run: go install github.com/wailsapp/wails/v2/cmd/wails@latest
       - name: Build
         run: wails build --platform windows/amd64 -webview2 embed -nsis
-
+      - name: package
+        working-directory: ${{ github.workspace }}/build/bin
+        run: |
+          iwr -outf lethean-gui-bundle-win-testnet-x64.zip https://github.com/letheanVPN/blockchain-iTw3/releases/latest/download/lethean-gui-bundle-win-testnet-x64.zip
+          unzip -d . lethean-gui-bundle-win-testnet-x64.zip
+          rm lethean-gui-bundle-win-testnet-x64.zip
+          zip -r ${{ github.workspace }}/testnet-lethean-desktop-windows-amd64.zip *
       # uploads the job file, makes no release
       - uses: actions/upload-artifact@v2
         with:
           name: Windows Desktop
           if-no-files-found: error
           path: |
-            build\bin\lethean-desktop.exe
-            build\bin\lethean-desktop-amd64-installer.exe
+            ${{ github.workspace }}/testnet-lethean-desktop-windows-amd64.zip
       # if this is a tag build, upload
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            build\bin\lethean-desktop.exe
-            build\bin\lethean-desktop-amd64-installer.exe
+            ${{ github.workspace }}/testnet-lethean-desktop-windows-*.zip
 #
 #  lauchers:
 #    name: "Trigger: letheanVPN/launchers"
