@@ -1,7 +1,7 @@
 {
   "name": "lethean",
   "assetdir": "frontend/dist",
-  "frontend:build": "npm run build --html",
+  "frontend:build": "npm run build",
   "frontend:install": "npm install --legacy-peer-deps",
   "frontend:dev:watcher": "npm run start",
   "frontend:dev:serverUrl": "http://localhost:4200",
