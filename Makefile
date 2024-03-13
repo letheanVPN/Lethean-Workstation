@@ -1,9 +1,12 @@
 
-.PHONY: all setup help clean build dev
+.PHONY: all setup help clean build dev server
 all: help
 
 dev: ## Run dev build
 	wails dev
+
+server:
+	(cd server && deno task compile)
 
 build: ## make prod build
 	wails build --clean -webview2 embed

@@ -2,7 +2,9 @@ package main
 
 import (
 	"context"
+	"embed"
 	"fmt"
+	"github.com/leaanthony/debme"
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 	"os"
 	"os/exec"
@@ -11,14 +13,27 @@ import (
 	"syscall"
 )
 
-////go:embed server/build
-//var lthn embed.FS
+//go:embed server/build
+var dappserver embed.FS
 
 var spawnCmd *exec.Cmd
 
 // App struct
 type App struct {
 	ctx context.Context
+}
+
+func Start(args ...string) (p *os.Process, err error) {
+	if args[0], err = exec.LookPath(args[0]); err == nil {
+		var procAttr os.ProcAttr
+		procAttr.Files = []*os.File{os.Stdin,
+			os.Stdout, os.Stderr}
+		p, err := os.StartProcess(args[0], args, &procAttr)
+		if err == nil {
+			return p, nil
+		}
+	}
+	return nil, err
 }
 
 // NewApp creates a new App application struct
@@ -35,51 +50,52 @@ func (b *App) startup(ctx context.Context) {
 	var exeName string
 	//
 	if goruntime.GOOS == "windows" {
-		exeName = "lethean-gui-server.exe"
+		exeName = "dappserver.exe"
 	} else {
-		exeName = "lethean-gui-server"
+		exeName = "dappserver"
 	}
 	exePath := filepath.Join(homeDir, exeName)
 
-	if _, err := os.Stat(filepath.Join(filepath.Dir(filepath.Join(exeDir)), exeName)); err == nil {
-		exePath = filepath.Join(filepath.Dir(filepath.Join(exeDir)), exeName)
+	if _, err := os.Stat(exePath); err == nil {
 		fmt.Println("Found Lethean Server: " + exePath)
-	} else if _, err := os.Stat(exePath); err == nil {
-		fmt.Println("Found Lethean Server: " + exePath)
-	}
-	//} else if errors.Is(err, os.ErrNotExist) {
-	//	fmt.Println("Could not find Lethean Server, extracting to: " + exePath)
-	//	root, _ := debme.FS(lthn, "server/build")
-	//	err := root.CopyFile(exeName, exePath, 0777)
-	//	if err != nil {
-	//		return
-	//	}
-	//	root = debme.Debme{}
-	//	err = nil
-	//	//_ = os.WriteFile(exePath, data, 0777)
-	//}
-
-	if goruntime.GOOS == "windows" {
-		if _, err := os.Stat(exePath); err == nil {
-			fmt.Println("Starting lthn.exe: " + exePath)
-			spawnCmd = exec.Command("cmd.exe", "/c", "START", "<Lethean Server> /b /min", exePath, "server")
-		} else {
-			fmt.Println("Error Could not find lthn.exe:" + exePath)
-		}
 	} else {
-		spawnCmd = exec.Command(exePath, "server")
+		fmt.Println("Could not find Lethean Server, extracting to: " + exePath)
+		root, _ := debme.FS(dappserver, "server/build")
+		err := root.CopyFile(exeName, exePath, 0777)
+		if err != nil {
+			return
+		}
+		root = debme.Debme{}
+		err = nil
+		//_ = os.WriteFile(exePath, data, 0777)
 	}
+
 	cerr := os.Chdir(homeDir)
+
 	if cerr != nil {
 		fmt.Println(cerr)
 		return
 	}
-	fmt.Println("Home Dir:" + homeDir)
-	fmt.Println("Running command and waiting for it to finish...")
-	err := spawnCmd.Start()
-	if err != nil {
-		fmt.Println("cmd.Start failed: ", err)
+	fmt.Println("Working Directory:" + homeDir)
+
+	//if goruntime.GOOS == "windows" {
+	//	if _, err := os.Stat(exePath); err == nil {
+	//		fmt.Println("Starting dappserver.exe: " + exePath)
+	//		spawnCmd = exec.Command("cmd.exe", "/c", "START", "<dAppServer> /b /min", exePath)
+	//	} else {
+	//		fmt.Println("Error Could not find dappserver.exe:" + exePath)
+	//	}
+	//} else {
+	//	fmt.Println("Starting dappserver: " + exePath)
+	//	spawnCmd = exec.Command(exePath)
+	//}
+	if proc, err := Start(exePath); err == nil {
+		fmt.Println("Started dappserver: ")
+		if err != nil {
+			fmt.Println("cmd.Start failed: ", proc)
+		}
 	}
+
 }
 
 // domReady is called after the front-end dom has been loaded

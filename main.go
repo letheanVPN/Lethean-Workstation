@@ -6,13 +6,14 @@ import (
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/logger"
 	"github.com/wailsapp/wails/v2/pkg/options"
+	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
 	"github.com/wailsapp/wails/v2/pkg/options/mac"
 	"github.com/wailsapp/wails/v2/pkg/options/windows"
 	"os"
 	"path/filepath"
 )
 
-//go:embed frontend/dist
+//go:embed all:frontend/lethean/dist
 var assets embed.FS
 
 var homeDir string
@@ -63,12 +64,14 @@ func main() {
 		StartHidden:       false,
 		HideWindowOnClose: false,
 		BackgroundColour:  &options.RGBA{R: 255, G: 255, B: 255, A: 255},
-		Assets:            assets,
-		LogLevel:          logLvl,
-		OnStartup:         app.startup,
-		OnDomReady:        app.domReady,
-		OnShutdown:        app.shutdown,
-		WindowStartState:  options.Maximised,
+		AssetServer: &assetserver.Options{
+			Assets: assets,
+		},
+		LogLevel:         logLvl,
+		OnStartup:        app.startup,
+		OnDomReady:       app.domReady,
+		OnShutdown:       app.shutdown,
+		WindowStartState: options.Maximised,
 		Bind: []interface{}{
 			app,
 		},
