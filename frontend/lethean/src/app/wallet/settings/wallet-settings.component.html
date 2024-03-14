@@ -1,0 +1,43 @@
+<div>
+  <div class="sm:hidden">
+    <label for="tabs" class="sr-only">Select a tab</label>
+    <!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
+    <select id="tabs" name="tabs" class="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+      <option>Applied</option>
+      <option>Phone Screening</option>
+      <option selected>Interview</option>
+      <option>Offer</option>
+      <option>Disqualified</option>
+    </select>
+  </div>
+  <div class="hidden sm:block">
+    <div class="border-b border-gray-200">
+      <nav class="-mb-px flex space-x-8" aria-label="Tabs">
+        <!-- Current: "border-indigo-500 text-indigo-600", Default: "border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700" -->
+        <a [routerLink]="['/', 'wallet']" [routerLinkActive]="['border-indigo-500', 'text-indigo-600']"  class="border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700 flex whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium">
+          Wallets
+          <!-- Current: "bg-indigo-100 text-indigo-600", Default: "bg-gray-100 text-gray-900" -->
+          <span [routerLinkActive]="['border-indigo-500', 'text-indigo-600']" class="ml-3 hidden rounded-full py-0.5 px-2.5 text-xs font-medium md:inline-block">0</span>
+        </a>
+        <a [routerLink]="['/', 'wallet', 'transactions']" [routerLinkActive]="['border-indigo-500', 'text-indigo-600']" class="border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700 flex whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium">
+          Transactions
+          <span [routerLinkActive]="['bg-indigo-100','text-indigo-600']" class=" ml-3 hidden rounded-full py-0.5 px-2.5 text-xs font-medium md:inline-block">6</span>
+        </a>
+        <a [routerLink]="['/', 'wallet', 'send']" [routerLinkActive]="['border-indigo-500', 'text-indigo-600']" class="border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700 flex whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium" aria-current="page">
+          Send
+          <span [routerLinkActive]="['bg-indigo-100','text-indigo-600']" class="bg-gray-100 text-gray-900 ml-3 hidden rounded-full py-0.5 px-2.5 text-xs font-medium md:inline-block">4</span>
+        </a>
+        <a [routerLink]="['/', 'wallet', 'receive']" [routerLinkActive]="['border-indigo-500', 'text-indigo-600']" class="border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700 flex whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium"> Receive </a>
+        <a [routerLink]="['/', 'wallet', 'settings']" [routerLinkActive]="['border-indigo-500', 'text-indigo-600']" class="border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700 flex whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium"> Settings </a>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<button type="button" class="relative block w-full rounded-lg border-2 border-dashed border-gray-300 p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+  <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v20c0 4.418 7.163 8 16 8 1.381 0 2.721-.087 4-.252M8 14c0 4.418 7.163 8 16 8s16-3.582 16-8M8 14c0-4.418 7.163-8 16-8s16 3.582 16 8m0 0v14m0-4c0 4.418-7.163 8-16 8S8 28.418 8 24m32 10v6m0 0v6m0-6h6m-6 0h-6" />
+  </svg>
+  <span class="mt-2 block text-sm font-semibold text-gray-900">Create a new Wallet</span>
+</button>
+

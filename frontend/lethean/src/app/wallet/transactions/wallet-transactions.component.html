@@ -1,0 +1,91 @@
+<div>
+  <div class="sm:hidden">
+    <label for="tabs" class="sr-only">Select a tab</label>
+    <!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
+    <select id="tabs" name="tabs" class="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+      <option>Applied</option>
+      <option>Phone Screening</option>
+      <option selected>Interview</option>
+      <option>Offer</option>
+      <option>Disqualified</option>
+    </select>
+  </div>
+  <div class="hidden sm:block">
+    <div class="border-b border-gray-200">
+      <nav class="-mb-px flex space-x-8" aria-label="Tabs">
+        <!-- Current: "border-indigo-500 text-indigo-600", Default: "border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700" -->
+        <a [routerLink]="['/', 'wallet']" [routerLinkActive]="['border-indigo-500', 'text-indigo-600']"  class="border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700 flex whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium">
+          Wallets
+          <!-- Current: "bg-indigo-100 text-indigo-600", Default: "bg-gray-100 text-gray-900" -->
+          <span [routerLinkActive]="['border-indigo-500', 'text-indigo-600']" class="bg-gray-100 text-gray-900 ml-3 hidden rounded-full py-0.5 px-2.5 text-xs font-medium md:inline-block">0</span>
+        </a>
+        <a [routerLink]="['/', 'wallet', 'transactions']" [routerLinkActive]="['border-indigo-500', 'text-indigo-600']" class="border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700 flex whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium">
+          Transactions
+          <span [routerLinkActive]="['bg-indigo-100','text-indigo-600']" class=" ml-3 hidden rounded-full py-0.5 px-2.5 text-xs font-medium md:inline-block">6</span>
+        </a>
+        <a [routerLink]="['/', 'wallet', 'send']" [routerLinkActive]="['border-indigo-500', 'text-indigo-600']" class="border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700 flex whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium" aria-current="page">
+          Send
+          <span [routerLinkActive]="['bg-indigo-100','text-indigo-600']" class="bg-gray-100 text-gray-900 ml-3 hidden rounded-full py-0.5 px-2.5 text-xs font-medium md:inline-block">4</span>
+        </a>
+        <a [routerLink]="['/', 'wallet', 'receive']" [routerLinkActive]="['border-indigo-500', 'text-indigo-600']" class="border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700 flex whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium"> Receive </a>
+        <a [routerLink]="['/', 'wallet', 'settings']" [routerLinkActive]="['border-indigo-500', 'text-indigo-600']" class="border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700 flex whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium"> Settings </a>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<div class="px-4 sm:px-6 lg:px-8">
+  <div class="mt-8 flow-root">
+    <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+        <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+          <table class="min-w-full divide-y divide-gray-300">
+            <thead class="bg-gray-50">
+            <tr>
+              <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Name</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Title</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Email</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Role</th>
+              <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                <span class="sr-only">Edit</span>
+              </th>
+            </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200 bg-white">
+            <tr>
+              <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">Lindsay Walton</td>
+              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Front-end Developer</td>
+              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">lindsay.waltonexample.com</td>
+              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Member</td>
+              <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">, Lindsay Walton</span></a>
+              </td>
+            </tr>
+            <tr>
+              <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">Lindsay Walton</td>
+              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Front-end Developer</td>
+              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">lindsay.waltonexample.com</td>
+              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Member</td>
+              <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">, Lindsay Walton</span></a>
+              </td>
+            </tr>
+            <tr>
+              <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">Lindsay Walton</td>
+              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Front-end Developer</td>
+              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">lindsay.waltonexample.com</td>
+              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Member</td>
+              <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">, Lindsay Walton</span></a>
+              </td>
+            </tr>
+
+            <!-- More people... -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
