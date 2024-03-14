@@ -56,7 +56,7 @@ jobs:
       - run: go install github.com/wailsapp/wails/v2/cmd/wails@latest
       - name: Build
         run: |
-          (cd server && deno task compile-lin)
+          make server-lin
           wails build --platform linux/amd64 -webview2 embed
       - run: chmod +x build/bin/lethean-desktop
       - name: 'Tar files'
@@ -112,8 +112,97 @@ jobs:
             brew install mitchellh/gon/gon
       - name: Build
         run: |
-          (cd server && deno task compile-mac)
-          wails build --platform darwin/universal -webview2 embed
+          make server-mac
+          wails build --platform darwin/amd64 -webview2 embed
+      - name: chmod +x exe
+        run: chmod +x build/bin/lethean.app/Contents/MacOS/lethean
+      - name: MacOS Extras
+        working-directory: ./build/bin/lethean.app
+        run: |
+          wget https://github.com/letheanVPN/blockchain-iTw3/releases/latest/download/lethean-gui-bundle-macos-testnet-i386.tar.bz2
+          tar -xjf lethean-gui-bundle-macos-testnet-i386.tar.bz2
+          rm lethean-gui-bundle-macos-testnet-i386.tar.bz2
+      - name: Zip .app
+        working-directory: ./build/bin
+        run: |
+           ditto -c -k --keepParent ./lethean.app ./lethean.app.zip
+
+      #      - name: Import Code-Signing Certificates for macOS
+#        if: startsWith(github.ref, 'refs/tags/')
+#        uses: Apple-Actions/import-codesign-certs@v1
+#        with:
+#          keychain-password: ${{ secrets.APPLE_PASSWORD }}
+#          p12-file-base64: ${{ secrets.MAC_DEVELOPER_CERT }}
+#          p12-password: ${{ secrets.MAC_DEVELOPER_PASS }}
+#      - name: Import Code-Signing Certificates for macOS
+#        if: startsWith(github.ref, 'refs/tags/')
+#        uses: Apple-Actions/import-codesign-certs@v1
+#        with:
+#          keychain-password: ${{ secrets.APPLE_PASSWORD }}
+#          p12-file-base64: ${{ secrets.MAC_DEVELOPER_INSTALL_CERT }}
+#          p12-password: ${{ secrets.MAC_DEVELOPER_INSTALL_PASS }}
+#          create-keychain: false
+#      - name: Sign our macOS binary
+#        if: startsWith(github.ref, 'refs/tags/')
+#        env:
+#          APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
+#        run: |
+#          echo "Signing Package"
+#          gon -log-level=info ./build/darwin/gon-sign.json
+#          echo "Building Zip file"
+#          ditto -c -k --keepParent ./build/bin/lethean.app ./build/bin/lethean.app.zip
+#          echo "Building Installer"
+#          productbuild --sign 'Developer ID Installer: Lethean LTD (W2DNA5L5DY)' --component ./build/bin/lethean.app ./build/bin/lethean.pkg
+#          echo "notarising Installer and zip"
+#          gon -log-level=info ./build/darwin/gon-notarize.json
+      # uploads the job file, makes no release
+      - uses: actions/upload-artifact@v2
+        with:
+          name: macOS Universal Desktop
+          path: build/bin/lethean.app.zip
+      # if this is a tag build, upload
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            build/bin/lethean.app.zip
+
+  macos-m1:
+    runs-on: macos-latest
+    steps:
+      # Checkout code
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      # Install GoLang
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ^1.21
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 18.x
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.41.2
+      # Set up GoLang cache
+      - name: Go Cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/Library/Caches/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+      - run: | 
+            go install github.com/wailsapp/wails/v2/cmd/wails@latest
+            brew install mitchellh/gon/gon
+      - name: Build
+        run: |
+          make server-mac-m1
+          wails build --platform darwin/arm64 -webview2 embed
       - name: chmod +x exe
         run: chmod +x build/bin/lethean.app/Contents/MacOS/lethean
       - name: MacOS Extras
@@ -201,7 +290,7 @@ jobs:
       - run: go install github.com/wailsapp/wails/v2/cmd/wails@latest
       - name: Build
         run: |
-          (cd server && deno task compile-win)
+          make server-win
           wails build --platform windows/amd64 -webview2 embed
       - name: package
         working-directory: ${{ github.workspace }}/build/bin
@@ -224,19 +313,3 @@ jobs:
         with:
           files: |
             testnet-lethean-desktop-windows-amd64.zip
-#
-#  lauchers:
-#    name: "Trigger: letheanVPN/launchers"
-#    runs-on: ubuntu-latest
-#    needs:
-#      - linux
-#      - windows
-#      - macos
-#    steps:
-#      - name: Repository Dispatch
-#        uses: peter-evans/repository-dispatch@v2
-#        with:
-#          token: ${{ secrets.REPO_ACCESS_TOKEN }}
-#          event-type: build
-#          repository: letheanVPN/launchers
-#

@@ -5,8 +5,18 @@ all: help
 dev: ## Run dev build
 	wails dev
 
-server:
-	(cd server && deno task compile)
+server-linux:
+	(cd server && deno task compile-lin)
+
+server-windows:
+	(cd server && deno task compile-win)
+
+server-macos:
+	(cd server && deno task compile-mac)
+
+server-macos-m1:
+	(cd server && deno task compile-mac-m1)
+
 
 build: ## make prod build
 	wails build --clean -webview2 embed
