@@ -32,10 +32,10 @@ jobs:
           submodules: recursive
       # Install GoLang
       - name: Set up Go
-        uses: actions/settings-go@v4
+        uses: actions/setup-go@v4
         with:
           go-version: ^1.21
-      - uses: actions/settings-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 18.x
       - uses: denoland/setup-deno@v1
@@ -88,10 +88,10 @@ jobs:
           submodules: recursive
       # Install GoLang
       - name: Set up Go
-        uses: actions/settings-go@v4
+        uses: actions/setup-go@v4
         with:
           go-version: ^1.21
-      - uses: actions/settings-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 18.x
       - uses: denoland/setup-deno@v1
@@ -177,10 +177,10 @@ jobs:
           submodules: recursive
       # Install GoLang
       - name: Set up Go
-        uses: actions/settings-go@v4
+        uses: actions/setup-go@v4
         with:
           go-version: ^1.21
-      - uses: actions/settings-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 18.x
       - uses: denoland/setup-deno@v1
@@ -265,10 +265,10 @@ jobs:
         with:
           submodules: recursive
       # Install GoLang
-      - uses: actions/settings-go@v4
+      - uses: actions/setup-go@v4
         with:
           go-version: ^1.21
-      - uses: actions/settings-node@v4
+      - uses: actions/config-node@v4
         with:
           node-version: 18.x
       - uses: denoland/setup-deno@v1
