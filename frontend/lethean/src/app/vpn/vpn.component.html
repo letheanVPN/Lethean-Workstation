@@ -13,7 +13,7 @@
         </div>
         <div class="min-w-0 flex-1">
           <div class="text-sm font-medium text-gray-900">
-            <a href="#">
+            <a [routerLink]="['/', 'settings', 'full-node']" >
               <span class="absolute inset-0" aria-hidden="true"></span>
               Full Node
             </a>
@@ -40,10 +40,10 @@
           <div class="text-sm font-medium text-gray-900">
             <a href="#">
               <span class="absolute inset-0" aria-hidden="true"></span>
-              Relay Node
+              Simple Redirect Gateway
             </a>
           </div>
-          <p class="text-sm text-gray-500">Participate in network traffic without being the first or last point of contact: Chain, VPN Relay, VPN Client, Tor.</p>
+          <p class="text-sm text-gray-500">Participate in network traffic: Chain, VPN Relay, VPN Client, Tor.</p>
         </div>
         <div class="flex-shrink-0 self-center">
           <svg class="h-5 w-5 text-gray-400 group-hover:text-gray-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -65,10 +65,10 @@
           <div class="text-sm font-medium text-gray-900">
             <a href="#">
               <span class="absolute inset-0" aria-hidden="true"></span>
-              Leaf Node
+              Gateway Only
             </a>
           </div>
-          <p class="text-sm text-gray-500">Attach a new node to your central VDP service: Chain, VPN Server, VPN Relay, VPN Client, Tor.</p>
+          <p class="text-sm text-gray-500">When you do not need to manage your own space.<br/>Your node will work as a network gateway for traffic to spaces which you select/allow.</p>
         </div>
         <div class="flex-shrink-0 self-center">
           <svg class="h-5 w-5 text-gray-400 group-hover:text-gray-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">

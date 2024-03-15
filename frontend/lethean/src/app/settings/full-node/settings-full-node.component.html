@@ -1,0 +1,106 @@
+<main class=" pb-8">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+    <h1 class="sr-only">Docker Setup Page</h1>
+    <p class="sr-only">This page will communicate with your local docker service, download and bootstrap Lethean.</p>
+    <!-- Main 3 column grid -->
+    <div class="grid grid-cols-1 items-start gap-4 lg:grid-cols-3 lg:gap-8">
+
+      <!-- Right column -->
+      <div class="grid grid-cols-1 gap-4">
+        <section aria-labelledby="section-2-title">
+          <h2 class="sr-only" id="section-2-title">Setup Step Indicators</h2>
+          <div class="overflow-hidden rounded-lg bg-white shadow">
+            <div class="p-6">
+              <ul role="list" class="divide-y divide-gray-100">
+                <!-- Docker Check -->
+                <li class="flex justify-between gap-x-6 py-5">
+                  <div class="flex min-w-0 gap-x-4">
+                    <div class="min-w-0 flex-auto">
+                      <p class="text-sm font-semibold leading-6 text-gray-900">Docker</p>
+                      <p class="mt-1 truncate text-xs leading-5 text-gray-500">{{status_docker}}</p>
+                    </div>
+                  </div>
+                  <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+<!--                    <p class="text-sm leading-6 text-gray-900">{{status_docker}}</p>-->
+                    <div class="mt-1 flex items-center gap-x-1.5">
+                      <div class="flex-none rounded-full bg-emerald-500/20 p-1">
+                        <div class="h-1.5 w-1.5 rounded-full bg-emerald-500"></div>
+                      </div>
+                      <p class="text-xs leading-5 text-gray-500">Online</p>
+                    </div>
+<!--                    <p class="mt-1 text-xs leading-5 text-gray-500">Last seen <time datetime="2023-01-23T13:23Z">3h ago</time></p>-->
+                  </div>
+                </li>
+                <!-- Lethean Image Check -->
+                <li class="flex justify-between gap-x-6 py-5">
+                  <div class="flex min-w-0 gap-x-4">
+                    <div class="min-w-0 flex-auto">
+                      <p class="text-sm font-semibold leading-6 text-gray-900">Lethean Image</p>
+                      <p class="mt-1 truncate text-xs leading-5 text-gray-500">{{status_lethean_image}}</p>
+                    </div>
+                  </div>
+                  <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+                    <ng-container *ngIf="status_lethean_image === 'Not Installed'">
+                      <button class="ti-btn ti-btn-primary" (click)="pullImage()">Download Image</button>
+                    </ng-container>
+                    <ng-container *ngIf="status_lethean_image == 'Installed'">
+<!--                    <p class="text-sm leading-6 text-gray-900">{{status_lethean_image}}</p>-->
+                    <div class="mt-1 flex items-center gap-x-1.5">
+                      <div class="flex-none rounded-full bg-emerald-500/20 p-1">
+                        <div class="h-1.5 w-1.5 rounded-full bg-emerald-500"></div>
+                      </div>
+                      <p class="text-xs leading-5 text-gray-500">Online</p>
+                    </div>
+                    </ng-container>
+<!--                    <p class="mt-1 text-xs leading-5 text-gray-500">Last seen <time datetime="2023-01-23T13:23Z">3h ago</time></p>-->
+                  </div>
+                </li>
+                <!-- Lethean Container Check -->
+                <li class="flex justify-between gap-x-6 py-5">
+                  <div class="flex min-w-0 gap-x-4">
+                    <div class="min-w-0 flex-auto">
+                      <p class="text-sm font-semibold leading-6 text-gray-900">Lethean Node</p>
+                      <p class="mt-1 truncate text-xs leading-5 text-gray-500">{{status_lethean_node}}</p>
+                    </div>
+                  </div>
+                  <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+                    <ng-container *ngIf="status_lethean_node === 'Not Installed'">
+                      <button class="ti-btn ti-btn-primary" (click)="createContainer()">Create Container</button>
+                    </ng-container>
+                    <ng-container *ngIf="status_lethean_node == 'Installed'">
+<!--                    <p class="text-sm leading-6 text-gray-900">{{status_lethean_node}}</p>-->
+                    <div class="mt-1 flex items-center gap-x-1.5">
+                      <div class="flex-none rounded-full bg-emerald-500/20 p-1">
+                        <div class="h-1.5 w-1.5 rounded-full bg-emerald-500"></div>
+                      </div>
+                      <p class="text-xs leading-5 text-gray-500">Online</p>
+                    </div>
+                    </ng-container>
+                    <!--                    <p class="mt-1 text-xs leading-5 text-gray-500">Last seen <time datetime="2023-01-23T13:23Z">3h ago</time></p>-->
+                  </div>
+                </li>
+              </ul>
+
+
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Left column -->
+      <div class="grid grid-cols-1 gap-4 lg:col-span-2">
+        <section aria-labelledby="section-1-title">
+          <h2 class="sr-only" id="section-1-title">Section title</h2>
+          <div class="overflow-hidden rounded-lg bg-white shadow">
+            <div class="p-6">
+              <!-- Your content -->
+
+            </div>
+          </div>
+        </section>
+      </div>
+
+
+    </div>
+  </div>
+</main>
