@@ -24,26 +24,26 @@ on:
 
 jobs:
   linux:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       # Checkout code
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
       # Install GoLang
       - name: Set up Go
-        uses: actions/setup-go@v2
+        uses: actions/settings-go@v4
         with:
           go-version: ^1.21
-      - uses: actions/setup-node@v2
+      - uses: actions/settings-node@v4
         with:
           node-version: 18.x
-      - uses: denoland/setup-deno@v1
+      - uses: denoland/settings-deno@v1
         with:
           deno-version: v1.41.2
       # Set up GoLang cache
       - name: Go Cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: |
             ~/.cache/go-build
@@ -62,7 +62,7 @@ jobs:
       - name: 'Tar files'
         run: cd build/bin/ && tar -cvf ../../linux-lethean-desktop.tar .
       # uploads the job file, makes no release
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: Linux Desktop
           path: linux-lethean-desktop.tar
@@ -83,23 +83,23 @@ jobs:
     runs-on: macos-latest
     steps:
       # Checkout code
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
       # Install GoLang
       - name: Set up Go
-        uses: actions/setup-go@v2
+        uses: actions/settings-go@v4
         with:
           go-version: ^1.21
-      - uses: actions/setup-node@v2
+      - uses: actions/settings-node@v4
         with:
           node-version: 18.x
-      - uses: denoland/setup-deno@v1
+      - uses: denoland/settings-deno@v1
         with:
           deno-version: v1.41.2
       # Set up GoLang cache
       - name: Go Cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: |
             ~/Library/Caches/go-build
@@ -156,7 +156,7 @@ jobs:
 #          echo "notarising Installer and zip"
 #          gon -log-level=info ./build/darwin/gon-notarize.json
       # uploads the job file, makes no release
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: macOS Universal Desktop
           path: build/bin/lethean.app.zip
@@ -172,23 +172,23 @@ jobs:
     runs-on: macos-latest
     steps:
       # Checkout code
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
       # Install GoLang
       - name: Set up Go
-        uses: actions/setup-go@v2
+        uses: actions/settings-go@v4
         with:
           go-version: ^1.21
-      - uses: actions/setup-node@v2
+      - uses: actions/settings-node@v4
         with:
           node-version: 18.x
-      - uses: denoland/setup-deno@v1
+      - uses: denoland/settings-deno@v1
         with:
           deno-version: v1.41.2
       # Set up GoLang cache
       - name: Go Cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: |
             ~/Library/Caches/go-build
@@ -245,7 +245,7 @@ jobs:
 #          echo "notarising Installer and zip"
 #          gon -log-level=info ./build/darwin/gon-notarize.json
       # uploads the job file, makes no release
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: macOS Universal Desktop
           path: build/bin/lethean.app.zip
@@ -261,22 +261,22 @@ jobs:
     runs-on: windows-2022
     steps:
       # Checkout code
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
       # Install GoLang
-      - uses: actions/setup-go@v2
+      - uses: actions/settings-go@v4
         with:
           go-version: ^1.21
-      - uses: actions/setup-node@v2
+      - uses: actions/settings-node@v4
         with:
           node-version: 18.x
-      - uses: denoland/setup-deno@v1
+      - uses: denoland/settings-deno@v1
         with:
           deno-version: v1.41.2
       # Set up GoLang cache
       - name: Go Cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             %LocalAppData%\go-build
@@ -300,7 +300,7 @@ jobs:
           rm lethean-gui-bundle-win-testnet-x64.zip
           zip -r ${{ github.workspace }}/testnet-lethean-desktop-windows-amd64.zip *
       # uploads the job file, makes no release
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: Windows Desktop
           if-no-files-found: error
