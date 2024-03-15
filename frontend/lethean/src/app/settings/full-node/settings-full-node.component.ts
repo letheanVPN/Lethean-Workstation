@@ -19,7 +19,7 @@ export class SettingsFullNodeComponent implements OnInit{
 
       const docker = fetch('http://localhost:36911/docker/container/list')
         .then(response => response.json()).then(data => {
-          if(data.length > 0){
+          if(data.length >= 0){
             this.status_docker = 'Installed'
             for (let i = 0; i < data.length; i++) {
               if(data[i].Names.includes('/letheannode')){

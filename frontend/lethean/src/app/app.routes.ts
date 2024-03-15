@@ -10,6 +10,7 @@ import {WalletSendComponent} from "./wallet/send/wallet-send.component";
 import {WalletReceiveComponent} from "./wallet/receive/wallet-receive.component";
 import {WalletSettingsComponent} from "./wallet/settings/wallet-settings.component";
 import {SettingsFullNodeComponent} from "./settings/full-node/settings-full-node.component";
+import {SettingsDockerComponent} from "./settings/docker/settings-docker.component";
 
 export const routes: Routes = [
 
@@ -52,6 +53,11 @@ export const routes: Routes = [
   {
     path: 'settings/full-node',
     component: SettingsFullNodeComponent
+
+  },
+  {
+    path: 'settings/docker',
+    component: SettingsDockerComponent
 
   },
   {

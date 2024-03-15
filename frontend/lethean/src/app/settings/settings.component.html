@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="flex flex-none items-center gap-x-4">
-      <button [routerLink]="['/', 'settings', 'full-node']" class="hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block">Configure</button>
+      <a [routerLink]="['/', 'settings', 'full-node']" class="hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block">Configure</a>
     </div>
   </li>
   <li class="flex items-center justify-between gap-x-6 py-5">
@@ -16,7 +16,17 @@
       </div>
     </div>
     <div class="flex flex-none items-center gap-x-4">
-      <button [routerLink]="['/', 'settings', 'chain-node']" class="hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block">Configure</button>
+      <a [routerLink]="['/', 'settings', 'chain-node']" class="hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block">Configure</a>
+    </div>
+  </li>
+  <li class="flex items-center justify-between gap-x-6 py-5">
+    <div class="min-w-0">
+      <div class="flex items-start gap-x-3">
+        <p class="text-sm font-semibold leading-6 text-gray-900">Docker Browser</p>
+      </div>
+    </div>
+    <div class="flex flex-none items-center gap-x-4">
+      <a [routerLink]="['/', 'settings', 'docker']" class="hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block">Manage Containers</a>
     </div>
   </li>
 </ul>
