@@ -56,7 +56,7 @@ jobs:
       - run: go install github.com/wailsapp/wails/v2/cmd/wails@latest
       - name: Build
         run: |
-          make server-lin
+          make server-linux
           wails build --platform linux/amd64 -webview2 embed
       - run: chmod +x build/bin/lethean-desktop
       - name: 'Tar files'
@@ -112,7 +112,7 @@ jobs:
             brew install mitchellh/gon/gon
       - name: Build
         run: |
-          make server-mac
+          make server-macos
           wails build --platform darwin/amd64 -webview2 embed
       - name: chmod +x exe
         run: chmod +x build/bin/lethean.app/Contents/MacOS/lethean
@@ -201,7 +201,7 @@ jobs:
             brew install mitchellh/gon/gon
       - name: Build
         run: |
-          make server-mac-m1
+          make server-macos-m1
           wails build --platform darwin/arm64 -webview2 embed
       - name: chmod +x exe
         run: chmod +x build/bin/lethean.app/Contents/MacOS/lethean
@@ -290,7 +290,7 @@ jobs:
       - run: go install github.com/wailsapp/wails/v2/cmd/wails@latest
       - name: Build
         run: |
-          make server-win
+          make server-windows
           wails build --platform windows/amd64 -webview2 embed
       - name: package
         working-directory: ${{ github.workspace }}/build/bin
