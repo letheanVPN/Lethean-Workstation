@@ -38,7 +38,7 @@ jobs:
       - uses: actions/settings-node@v4
         with:
           node-version: 18.x
-      - uses: denoland/settings-deno@v1
+      - uses: denoland/setup-deno@v1
         with:
           deno-version: v1.41.2
       # Set up GoLang cache
@@ -94,7 +94,7 @@ jobs:
       - uses: actions/settings-node@v4
         with:
           node-version: 18.x
-      - uses: denoland/settings-deno@v1
+      - uses: denoland/setup-deno@v1
         with:
           deno-version: v1.41.2
       # Set up GoLang cache
@@ -183,7 +183,7 @@ jobs:
       - uses: actions/settings-node@v4
         with:
           node-version: 18.x
-      - uses: denoland/settings-deno@v1
+      - uses: denoland/setup-deno@v1
         with:
           deno-version: v1.41.2
       # Set up GoLang cache
@@ -271,7 +271,7 @@ jobs:
       - uses: actions/settings-node@v4
         with:
           node-version: 18.x
-      - uses: denoland/settings-deno@v1
+      - uses: denoland/setup-deno@v1
         with:
           deno-version: v1.41.2
       # Set up GoLang cache
