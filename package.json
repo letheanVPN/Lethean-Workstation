@@ -15,7 +15,7 @@
   "private": true,
   "scripts": {
     "dev": "wails dev",
-    "build": "wails build --clean -webview2 embed",
+    "compile": "wails build --clean -webview2 embed",
     "clean": "rimraf **/node_modules **/*-lock.json **/*.json.md5",
     "dev:git-update": "git submodule sync && git submodule update --remote",
     "be:serve": "deno run -A --unstable --config server/tsconfig.json --import-map server/vendor/import_map.json server/mod.ts server",

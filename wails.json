@@ -1,14 +1,14 @@
 {
   "$schema": "https://wails.io/schemas/config.v2.json",
   "name": "lethean",
-  "assetdir": "frontend/lethean/dist",
-  "frontend:dir": "frontend/lethean",
+  "assetdir": "frontend/dist",
+  "frontend:dir": "frontend",
     "frontend:build": "npm run fe-build",
   "frontend:dev:build": "npm run fe-build",
   "frontend:install": "npm install --legacy-peer-deps",
-  "frontend:dev:watcher": "npm run fe-start",
+  "frontend:dev:watcher": "npm run start",
   "frontend:dev:serverUrl": "auto",
-  "wailsjsdir": "./frontend/lethean/src/assets",
+  "wailsjsdir": "./frontend/src/assets",
   "version": "4.2.9",
   "outputfilename": "lethean-desktop",
   "Author": {
