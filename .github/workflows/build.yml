@@ -209,7 +209,7 @@ jobs:
       - name: Zip .app
         working-directory: ./build/bin
         run: |
-           ditto -c -k --keepParent ./lethean.app ../../lethean.app.zip
+           ditto -c -k --keepParent ./lethean.app ../../lethean-m1.app.zip
 
       #      - name: Import Code-Signing Certificates for macOS
 #        if: startsWith(github.ref, 'refs/tags/')
@@ -243,20 +243,20 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: macOS Universal Desktop
-          path: lethean.app.zip
+          path: lethean-m1.app.zip
       # if this is a tag build, upload
       - name: Release Tag
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: lethean.app.zip
+          files: lethean-m1.app.zip
       - name: Release Branch
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/heads/main')
         with:
           tag_name: canary
           prerelease: true
-          files: lethean.app.zip
+          files: lethean-m1.app.zip
 
   windows:
     runs-on: windows-2022
@@ -296,18 +296,30 @@ jobs:
       - name: package
         working-directory: ${{ github.workspace }}/build/bin
         run: |
-          zip -r ${{ github.workspace }}/testnet-lethean-desktop-windows-amd64.zip *
+          zip -r ${{ github.workspace }}/lethean-desktop-windows-amd64.zip *
       # uploads the job file, makes no release
       - uses: actions/upload-artifact@v4
         with:
           name: Windows Desktop
           if-no-files-found: error
           path: |
-            ${{ github.workspace }}/testnet-lethean-desktop-windows-amd64.zip
+            ${{ github.workspace }}/lethean-desktop-windows-amd64.zip
       # if this is a tag build, upload
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            testnet-lethean-desktop-windows-amd64.zip
+            lethean-desktop-windows-amd64.zip
+      - name: Release Tag
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: lethean-desktop-windows-amd64.zip
+      - name: Release Branch
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/heads/main')
+        with:
+          tag_name: canary
+          prerelease: true
+          files: lethean-desktop-windows-amd64.zip
