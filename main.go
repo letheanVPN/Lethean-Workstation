@@ -13,7 +13,7 @@ import (
 	"path/filepath"
 )
 
-//go:embed all:frontend/lethean/dist
+//go:embed all:frontend/dist
 var assets embed.FS
 
 var homeDir string

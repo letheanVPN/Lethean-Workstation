@@ -89,7 +89,7 @@ func (b *App) startup(ctx context.Context) {
 	//	fmt.Println("Starting dappserver: " + exePath)
 	//	spawnCmd = exec.Command(exePath)
 	//}
-	if proc, err := Start(exePath); err == nil {
+	if proc, err := Start(exePath, "start"); err == nil {
 		fmt.Println("Started dappserver: ")
 		if err != nil {
 			fmt.Println("cmd.Start failed: ", proc)
