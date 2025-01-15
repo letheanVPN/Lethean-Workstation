@@ -1,6 +1,6 @@
 [submodule "server"]
 	path = server
-	url = git@github.com:dAppServer/server.git
+	url = https://github.com/dAppServer/server.git
 [submodule "frontend"]
 	path = frontend
-	url = git@github.com:dAppServer/dappui.git
+	url = https://github.com/dAppServer/dappui.git
