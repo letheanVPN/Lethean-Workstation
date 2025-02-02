@@ -6,16 +6,13 @@ dev: ## Run dev build
 	wails dev
 
 server-linux:
-	(cd server && deno task compile-lin)
+	(cd server && deno task build-amd-linux && deno task build-arm-linux)
 
 server-windows:
-	(cd server && deno task compile-win)
+	(cd server && deno task build-amd-win)
 
 server-macos:
-	(cd server && deno task compile-mac)
-
-server-macos-m1:
-	(cd server && deno task compile-mac-m1)
+	(cd server && deno task build-amd-macos && deno task build-arm-macos)
 
 
 build: ## make prod build

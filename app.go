@@ -50,9 +50,9 @@ func (b *App) startup(ctx context.Context) {
 	var exeName string
 	//
 	if goruntime.GOOS == "windows" {
-		exeName = "dappserver.exe"
+		exeName = "server.exe"
 	} else {
-		exeName = "dappserver"
+		exeName = "server"
 	}
 	exePath := filepath.Join(homeDir, exeName)
 
@@ -78,17 +78,17 @@ func (b *App) startup(ctx context.Context) {
 	}
 	fmt.Println("Working Directory:" + homeDir)
 
-	//if goruntime.GOOS == "windows" {
-	//	if _, err := os.Stat(exePath); err == nil {
-	//		fmt.Println("Starting dappserver.exe: " + exePath)
-	//		spawnCmd = exec.Command("cmd.exe", "/c", "START", "<dAppServer> /b /min", exePath)
-	//	} else {
-	//		fmt.Println("Error Could not find dappserver.exe:" + exePath)
-	//	}
-	//} else {
-	//	fmt.Println("Starting dappserver: " + exePath)
-	//	spawnCmd = exec.Command(exePath)
-	//}
+	if goruntime.GOOS == "windows" {
+		if _, err := os.Stat(exePath); err == nil {
+			fmt.Println("Starting dappserver.exe: " + exePath)
+			spawnCmd = exec.Command("cmd.exe", "/c", "START", "<dAppServer> /b /min", exePath)
+		} else {
+			fmt.Println("Error Could not find dappserver.exe:" + exePath)
+		}
+	} else {
+		fmt.Println("Starting dappserver: " + exePath)
+		spawnCmd = exec.Command(exePath)
+	}
 	if proc, err := Start(exePath, "start"); err == nil {
 		fmt.Println("Started dappserver: ")
 		if err != nil {
